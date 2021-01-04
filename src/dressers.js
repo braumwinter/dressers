@@ -1,0 +1,1 @@
+ export const DRESSERS = ['a', 'aa', 'aaa'];
