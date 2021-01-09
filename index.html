@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,32 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="shortcut icon" href="#" type="image/x-icon">
 </head>
+
 <body>
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    <header class="header">
+        <div class="container">
+            <div class="header_info">
+                <span id="to_receive_orders"></span>
+                <span><a id="header_phone" href="tel:+"></a></span>
+                <span><a id="header_email" href="mailto:"></a></span>
+            </div>
+
+            <div class="header_language">
+                <div class="show_language">
+                    <span id="show_language" data-lang='en'>EN</span>
+                    <ul class="language_list">
+                        <li class="language_item" id="language_item_en" data-lang='en'>EN</li>
+                        <li class="language_item" id="language_item_pl" data-lang='pl'>PL</li>
+                        <li class="language_item" id="language_item_ru" data-lang='ru'>RU</li>
+                    </ul>
+                    </li>
+
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="main"></div>
 </body>
 <script src="./src/index.js" type="module"></script>
+
 </html>
