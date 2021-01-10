@@ -1,3 +1,15 @@
+@font-face {
+    font-family: 'Caveat';
+    src: url('./../assets/font/Caveat-Regular.eot');
+    src: url('./../assets/font/Caveat-Regular.eot?#iefix') format('embedded-opentype'),
+        url('./../assets/font/Caveat-Regular.woff2') format('woff2'),
+        url('./../assets/font/Caveat-Regular.woff') format('woff'),
+        url('./../assets/font/Caveat-Regular.ttf') format('truetype'),
+        url('./../assets/font/Caveat-Regular.svg#Caveat-Regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
 $color1: #8d8d8d;
 $color2: #b3b3b3;
 $color3: #ccccca;
@@ -50,7 +62,11 @@ ul {
     width: 100%;
     height: auto;
 
-    margin: 0 5%;
+    padding: 0 5%;
+}
+
+.gray {
+    background-color: $color3;
 }
 
 .header {
@@ -188,4 +204,55 @@ ul {
     height: 10px;
 
     filter: invert(1);
+}
+
+.logo_favorites {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.8rem;
+
+    background-color: $color3;
+    color: $color_black;
+}
+
+.logo_div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.logo {
+    font-family: 'Caveat';
+    text-transform: capitalize;
+    font-size: 6rem;
+}
+
+.logo_info {
+    font-size: 2rem;
+}
+
+.favorites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &:hover {
+        color: $color_white;
+
+        .favorites_img {
+            filter: invert(1);
+        }
+    }
+}
+
+.favorites_img {
+    width: 50px;
+    filter: invert(0);
+}
+
+.favorites_text {
+    font-size: 1.4rem;
 }

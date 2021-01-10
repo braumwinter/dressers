@@ -1,5 +1,3 @@
-
-
 export const NAME_DRESSERS = {
     chord: {
         en: 'Chord',
@@ -54,7 +52,7 @@ en: '',
 
 
 export const TAGS = {
-    
+
 }
 
 /*
@@ -69,8 +67,29 @@ export const HEADER_EMAIL = 'my_email@mail.com';
 
 export const WEBSITE_INFO = {
     to_receive_orders: {
-        en: 'To receive orders',
-        pl: 'Otrzymywać zamówienia',
-        ru: 'Для приема заказов'
+        en: 'To receive orders: ',
+        pl: 'Otrzymywać zamówienia: ',
+        ru: 'Для приема заказов: '
+    },
+    logo: {
+        en: 'best dressers',
+        pl: 'najlepsze komody',
+        ru: 'лучшие комоды'
+    },
+    important_information: {
+        en: 'this is very important information! read carefully!',
+        pl: 'to jest bardzo ważna informacja! Przeczytaj uważnie!',
+        ru: 'это очень важная информация! внимательно прочтите!'
+    },
+    favorites: {
+        en: 'favorites',
+        pl: 'ulubione',
+        ru: 'избранное'
+    },
+    no_chosen_one: {
+        en: 'you have not added anything to your favorites',
+        pl: 'nic nie dodałeś do ulubionych',
+        ru: 'вы ничего не добавили в избранное'
     }
+
 }

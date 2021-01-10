@@ -15,6 +15,10 @@ import {
     fill_info
 } from './fill_info.js';
 
+import {
+    show_favorites
+} from './favorites.js';
+
 const EN_LANG = 'en';
 const PL_LANG = 'pl';
 const RU_LANG = 'ru';
@@ -96,3 +100,6 @@ const language_item_ru = document.getElementById('language_item_ru');
 language_item_en.addEventListener('click', choose_lang, false);
 language_item_pl.addEventListener('click', choose_lang, false);
 language_item_ru.addEventListener('click', choose_lang, false);
+
+const favorites = document.getElementById('favorites');
+favorites.addEventListener('click', show_favorites, false);
