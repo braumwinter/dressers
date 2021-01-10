@@ -12,22 +12,31 @@
 <body>
     <header class="header">
         <div class="container">
-            <div class="header_info">
-                <span id="to_receive_orders"></span>
-                <span><a id="header_phone" href="tel:+"></a></span>
-                <span><a id="header_email" href="mailto:"></a></span>
-            </div>
+            <div class="head_container">
+                <div class="header_info">
+                    <span id="to_receive_orders"></span>
+                    <a class="header_info_link" id="header_phone" href="tel:+">
+                        <img class="header_info_img" src="./assets/img/phone.png" alt="phone">
+                        <span class="header_info_text" id="header_phone_number"></span>
+                    </a>
 
-            <div class="header_language">
-                <div class="show_language">
-                    <span id="show_language" data-lang='en'>EN</span>
-                    <ul class="language_list">
-                        <li class="language_item" id="language_item_en" data-lang='en'>EN</li>
-                        <li class="language_item" id="language_item_pl" data-lang='pl'>PL</li>
-                        <li class="language_item" id="language_item_ru" data-lang='ru'>RU</li>
-                    </ul>
-                    </li>
+                    <a class="header_info_link" id="header_email" href="mailto:">
+                        <img class="header_info_img" src="./assets/img/email.png" alt="email">
+                        <span class="header_info_text" id="header_email_address"></span>
+                    </a>
+                </div>
 
+                <div class="header_language">
+                    <div class="show_language">
+                        <span class="show_language_text" id="show_language" data-lang='en'>EN</span>
+                        <ul class="language_list">
+                            <li class="language_item" id="language_item_en" data-lang='en'>EN</li>
+                            <li class="language_item" id="language_item_pl" data-lang='pl'>PL</li>
+                            <li class="language_item" id="language_item_ru" data-lang='ru'>RU</li>
+                        </ul>
+                        </li>
+                        <img class="show_language_img" src="./assets/img/list_arrow.png" alt="arrow">
+                    </div>
                 </div>
             </div>
         </div>

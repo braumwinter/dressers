@@ -1,4 +1,4 @@
-const path_img = './assets/img/';
+const path_img = './assets/product/';
 
 export function card_create(obj){
     //console.log(obj);
