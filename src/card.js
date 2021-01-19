@@ -1,14 +1,44 @@
+import {
+    WEBSITE_INFO
+} from './lang.js';
+
 const path_img = './assets/product/';
 
-export function card_create(obj){
-    //console.log(obj);
-    const border = document.createElement('div');
-    border.className = 'card_border';
+export function product_card_create(obj) {
+    console.log('product_card_create ', obj);
+    const lang = document.getElementById('show_language').dataset.lang || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
-    const first_img = document.createElement('img');
-    first_img.src = path_img + obj.card_img[0];
+    const card_border = document.createElement('div');
+    card_border.className = 'card_border';
 
-    border.appendChild(first_img);
+    const img_border = document.createElement('div');
+    img_border.className = 'card_img_border';
+    img_border.style.backgroundImage = `url(${path_img + obj.card_img[1]})`;
+    card_border.appendChild(img_border);
 
-    return border;
+    const card_img = document.createElement('img');
+    card_img.className = 'card_img';
+    card_img.src = path_img + obj.card_img[0];
+    img_border.appendChild(card_img);
+
+    const card_name = document.createElement('p');
+    card_name.className = 'card_name';
+    card_name.innerHTML = obj.category_name[lang] + ' ' + obj.name;
+    card_border.appendChild(card_name);
+
+    const card_cost = document.createElement('p');
+    card_cost.className = 'card_cost';
+    card_cost.innerHTML = obj.roller_guides + ' - ' + obj.ball_guides;
+    card_border.appendChild(card_cost);
+
+    const card_button = document.createElement('button');
+    card_button.className = 'card_button';
+    card_button.innerHTML = WEBSITE_INFO.select[lang];
+    card_border.appendChild(card_button);
+
+    return card_border;
+}
+
+export function catalog_card_create(obj) {
+    console.log(obj);
 }

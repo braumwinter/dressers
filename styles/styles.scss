@@ -256,3 +256,64 @@ ul {
 .favorites_text {
     font-size: 1.4rem;
 }
+
+.menu {
+    padding: 5px 0;
+
+    color: $color_white;
+    background-color: $color1;
+    font-size: 1.4rem;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.menu_list {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.menu_item {
+    position: relative;
+
+    display: inline-block;
+    line-height: 1;
+    text-decoration: none;
+    padding: 10px;
+    margin: 0 10px;
+
+    cursor: pointer;
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+
+        display: block;
+        width: 0%;
+        height: 1px;
+        margin-top: 5px;
+
+        background-color: $color_white;
+
+        -webkit-transition: width .3s ease-in-out;
+        -moz--transition: width .3s ease-in-out;
+        transition: width .3s ease-in-out;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+    &:hover:after,
+    &:focus:after {
+        width: 100%;
+    }
+}
+
+.menu_item_active:after {
+    width: 100%;
+}

@@ -3,6 +3,11 @@ export const NAME_DRESSERS = {
         en: 'Chord',
         pl: 'Akord',
         ru: 'Аккорд'
+    },
+    woody: {
+        en: 'Woody',
+        pl: 'Drzewiasty',
+        ru: 'Вудди'
     }
 }
 
@@ -90,6 +95,36 @@ export const WEBSITE_INFO = {
         en: 'you have not added anything to your favorites',
         pl: 'nic nie dodałeś do ulubionych',
         ru: 'вы ничего не добавили в избранное'
+    },
+    menu_main: {
+        en: 'main',
+        pl: 'główna',
+        ru: 'главная'
+    },
+    menu_catalog: {
+        en: 'catalog',
+        pl: 'katalog',
+        ru: 'каталог'
+    },
+    menu_all_goods: {
+        en: 'all goods',
+        pl: 'wszystkie towary',
+        ru: 'все товары'
+    },
+    menu_what_need_know: {
+        en: 'what you need to know',
+        pl: 'co musisz wiedzieć',
+        ru: 'что нужно знать'
+    },
+    menu_our_address: {
+        en: 'our address',
+        pl: 'nasz adres',
+        ru: 'наш адрес'
+    },
+    select: {
+        en: 'select',
+        pl: 'wybierz',
+        ru: 'выбрать'
     }
-
 }
+

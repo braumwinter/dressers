@@ -3,7 +3,7 @@ import {
 } from './dressers.js';
 
 import {
-    card_create
+    product_card_create
 } from './card.js';
 
 import {
@@ -16,8 +16,14 @@ import {
 } from './fill_info.js';
 
 import {
-    show_favorites
-} from './favorites.js';
+    show_main,
+    show_favorites,
+    show_catalog,
+    show_all_goods,
+    show_what_need_know,
+    show_our_address,
+    show_start_page
+} from './pages.js';
 
 const EN_LANG = 'en';
 const PL_LANG = 'pl';
@@ -27,9 +33,16 @@ const RU_LANG = 'ru';
 
 const user_lang = navigator.language.slice(0, 2) || navigator.userLanguage.slice(0, 2);
 let website_lang;
-const save_user_lang = JSON.parse(localStorage.getItem('save_user_lang'));
+const save_user_lang = localStorage.getItem('save_user_lang');
 //console.log(save_user_lang);
 const show_lang = document.getElementById('show_language');
+
+const last_state = localStorage.getItem('last_state');
+if ((last_state === null) || (last_state === undefined)) {
+    localStorage.setItem('last_state', 'main');
+} else {
+    define_language(save_user_lang);
+}
 
 function define_language(lang) {
     switch (lang) {
@@ -59,32 +72,17 @@ console.log(website_lang);
 window.addEventListener('load', () => {
     change_lang(website_lang);
     fill_info();
-
-    const catalog = [];
-    const div = document.getElementById('main');
-
-    for (const key in DRESSERS) {
-        const category = DRESSERS[key];
-        for (const product in category) {
-            //console.log(product);
-            if (product != 0) {
-                catalog.push(card_create(category[product]));
-            }
-        }
-    }
-
-    catalog.forEach(function (item) {
-        div.appendChild(item);
-    });
+    //show_main_page();
+    show_all_goods();
 }, false);
 
 window.addEventListener('unload', () => {
-    //const save_lang = document.getElementById('show_language');
-    if ((show_lang.dataset.lang === null) || (show_lang.dataset.lang === undefined)) {
-        localStorage.setItem('save_user_lang', JSON.stringify(show_lang.innerHTML.toLocaleLowerCase()));
+    const save_lang = document.getElementById('show_language');
+    if ((save_lang.dataset.lang === null) || (save_lang.dataset.lang === undefined)) {
+        localStorage.setItem('save_user_lang', save_lang.innerHTML.toLocaleLowerCase());
         //console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     } else {
-        localStorage.setItem('save_user_lang', JSON.stringify(show_lang.dataset.lang));
+        localStorage.setItem('save_user_lang', save_lang.dataset.lang.toLocaleLowerCase());
         //console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
     }
 
@@ -103,3 +101,17 @@ language_item_ru.addEventListener('click', choose_lang, false);
 
 const favorites = document.getElementById('favorites');
 favorites.addEventListener('click', show_favorites, false);
+
+//show_catalog();
+
+const menu_main = document.getElementById('menu_main');
+const menu_catalog = document.getElementById('menu_catalog');
+const menu_all_goods = document.getElementById('menu_all_goods');
+const menu_what_need_know = document.getElementById('menu_what_need_know');
+const menu_our_address = document.getElementById('menu_our_address');
+
+menu_main.addEventListener('click', show_main, false);
+menu_catalog.addEventListener('click', show_catalog, false);
+menu_all_goods.addEventListener('click', show_all_goods, false);
+menu_what_need_know.addEventListener('click', show_what_need_know, false);
+menu_our_address.addEventListener('click', show_our_address, false);

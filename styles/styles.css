@@ -276,4 +276,69 @@ ul {
 .favorites_text {
   font-size: 1.4rem;
 }
+
+.menu {
+  padding: 5px 0;
+  color: #ffffff;
+  background-color: #8d8d8d;
+  font-size: 1.4rem;
+}
+
+.menu .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.menu_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.menu_item {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  text-decoration: none;
+  padding: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.menu_item:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  display: block;
+  width: 0%;
+  height: 1px;
+  margin-top: 5px;
+  background-color: #ffffff;
+  -webkit-transition: width .3s ease-in-out;
+  -moz--transition: width .3s ease-in-out;
+  transition: width .3s ease-in-out;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.menu_item:hover:after, .menu_item:focus:after {
+  width: 100%;
+}
+
+.menu_item_active:after {
+  width: 100%;
+}
 /*# sourceMappingURL=styles.css.map */

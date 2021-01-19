@@ -8,8 +8,11 @@ export const DRESSERS = {
         NAME_DRESSERS.chord,
         {
             name: '1',
+            category_name: NAME_DRESSERS.chord,
             card_img: ['chord1_small_1.jpg', 'chord1_small_2.jpg'],
             imgs: ['chord1_1.jpg', 'chord1_2.jpg', 'chord1_3.jpg'],
+            roller_guides: 225.00,
+            ball_guides: 274.00,
             body_color: BODY_COLOR.sonoma_oak,
             facade_color: BODY_COLOR.sonoma_oak,
             size: '',
@@ -25,12 +28,15 @@ export const DRESSERS = {
             category: '',
             vendor_code: '',
             tags: '',
-            
+
         },
         {
             name: '2',
+            category_name: NAME_DRESSERS.chord,
             card_img: ['chord2_small_1.jpg', 'chord2_small_2.jpg'],
             imgs: ['chord1_1.jpg', 'chord1_2.jpg', 'chord1_3.jpg'],
+            roller_guides: 225.00,
+            ball_guides: 274.00,
             body_color: BODY_COLOR.vintage_oak_oak,
             facade_color: BODY_COLOR.vintage_oak_oak,
             size: '',
@@ -46,9 +52,36 @@ export const DRESSERS = {
             category: '',
             vendor_code: '',
             tags: '',
-            
+
         },
-    ]
+    ],
+    woody: [
+        NAME_DRESSERS.woody,
+        {
+            name: '1',
+            category_name: NAME_DRESSERS.woody,
+            card_img: ['woody1_small_1.jpg', 'woody1_small_2.jpg'],
+            imgs: ['woody1_1.jpg', 'woody1_2.jpg', 'woody1_3.jpg'],
+            roller_guides: 215.00,
+            ball_guides: 257.00,
+            body_color: BODY_COLOR.sonoma_oak,
+            facade_color: BODY_COLOR.sonoma_oak,
+            size: '',
+            width: '100',
+            height: '90',
+            depth: '45',
+            weight: '',
+            build_option: '7',
+            body_material: '',
+            facade_material: '',
+            equipment: '',
+            additional_information: '',
+            category: '',
+            vendor_code: '',
+            tags: '',
+
+        },
+    ],
 
 
 }
