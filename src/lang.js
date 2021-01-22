@@ -82,9 +82,9 @@ export const WEBSITE_INFO = {
         ru: 'лучшие комоды'
     },
     important_information: {
-        en: 'this is very important information! read carefully!',
-        pl: 'to jest bardzo ważna informacja! Przeczytaj uważnie!',
-        ru: 'это очень важная информация! внимательно прочтите!'
+        en: 'Manufacturing of chests of drawers from chipboard. Delivery assembled!!',
+        pl: 'Produkcja komód z płyt wiórowych. Dostawa zmontowana!!',
+        ru: 'Изготовление комодов из ЛДСП. Доставка в собранном виде!!'
     },
     favorites: {
         en: 'favorites',
@@ -125,6 +125,11 @@ export const WEBSITE_INFO = {
         en: 'select',
         pl: 'wybierz',
         ru: 'выбрать'
+    },
+    main_page: {
+        en: 'Home',
+        pl: 'Dom',
+        ru: 'Главная'
     }
 }
 

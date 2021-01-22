@@ -13,13 +13,18 @@ export function product_card_create(obj) {
 
     const img_border = document.createElement('div');
     img_border.className = 'card_img_border';
-    img_border.style.backgroundImage = `url(${path_img + obj.card_img[1]})`;
+    //img_border.style.backgroundImage = `url(${path_img + obj.card_img[1]})`;
     card_border.appendChild(img_border);
 
-    const card_img = document.createElement('img');
-    card_img.className = 'card_img';
-    card_img.src = path_img + obj.card_img[0];
-    img_border.appendChild(card_img);
+    const card_img_first = document.createElement('img');
+    card_img_first.className = 'card_img_first';
+    card_img_first.src = path_img + obj.card_img[0];
+    img_border.appendChild(card_img_first);
+
+    const card_img_second = document.createElement('img');
+    card_img_second.className = 'card_img_second';
+    card_img_second.src = path_img + obj.card_img[1];
+    img_border.appendChild(card_img_second);
 
     const card_name = document.createElement('p');
     card_name.className = 'card_name';
@@ -28,7 +33,7 @@ export function product_card_create(obj) {
 
     const card_cost = document.createElement('p');
     card_cost.className = 'card_cost';
-    card_cost.innerHTML = obj.roller_guides + ' - ' + obj.ball_guides;
+    card_cost.innerHTML = obj.roller_guides + ' $  -  ' + obj.ball_guides + ' $';
     card_border.appendChild(card_cost);
 
     const card_button = document.createElement('button');
