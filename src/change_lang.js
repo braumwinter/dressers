@@ -1,6 +1,8 @@
-import { WEBSITE_INFO } from './lang.js';
+import {
+    WEBSITE_INFO
+} from './lang.js';
 
-export function choose_lang(event){
+export function choose_lang(event) {
     const button = event.currentTarget;
     const data_lang = button.dataset.lang;
 
@@ -11,7 +13,7 @@ export function choose_lang(event){
     change_lang(data_lang);
 }
 
-export function change_lang(lang){
+export function change_lang(lang) {
     const to_receive_orders = document.getElementById('to_receive_orders');
     to_receive_orders.innerHTML = WEBSITE_INFO.to_receive_orders[lang];
 
@@ -40,3 +42,13 @@ export function change_lang(lang){
     menu_our_address.innerHTML = WEBSITE_INFO.menu_our_address[lang];
 }
 
+export function change_lang2() {
+    const data = document.querySelectorAll('[data-en]');
+
+    console.log(data);
+
+    data.forEach(function (item) {
+        const name = item.dataset.en;
+        item.innerHTML = name;
+    });
+}

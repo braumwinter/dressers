@@ -73,7 +73,8 @@ window.addEventListener('load', () => {
     change_lang(website_lang);
     fill_info();
     //show_main_page();
-    show_all_goods();
+    //show_all_goods();
+    show_catalog();
 }, false);
 
 window.addEventListener('unload', () => {

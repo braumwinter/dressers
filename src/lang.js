@@ -68,6 +68,7 @@ en: '',
 
 export const HEADER_PHONE = '+375291234567';
 export const HEADER_EMAIL = 'my_email@mail.com';
+export const CURRENCY_UNIT = '$';
 
 
 export const WEBSITE_INFO = {
@@ -125,6 +126,16 @@ export const WEBSITE_INFO = {
         en: 'select',
         pl: 'wybierz',
         ru: 'выбрать'
+    },
+    whd: {
+        en: 'Width x Height x Depth',
+        pl: 'Szerokość x Wysokość x Głębokość',
+        ru: 'Ширина x Высота x Глубина'
+    },
+    go_to_catalog: {
+        en: 'go to catalog',
+        pl: 'przejdź do katalogu',
+        ru: 'перейти в каталог'
     },
     main_page: {
         en: 'Home',

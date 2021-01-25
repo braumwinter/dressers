@@ -11,6 +11,10 @@ import {
     catalog_card_create
 } from './card.js';
 
+import {
+    change_lang2
+} from './change_lang.js';
+
 const MAIN_PAGE = 'main_page';
 const CATALOG_PAGE = 'catalog_page';
 const ALL_PRODUCT_PAGE = 'all_catalog_page';
@@ -95,16 +99,24 @@ export function show_catalog(event) {
     console.log(main.dataset.page);
     show_pages_links();
 
+    let catalog_item = [];
+
     for (const key in DRESSERS) {
         const category = DRESSERS[key];
         for (const product in category) {
             //console.log(product);
             if (product == 0) {
-                catalog.push(category[product]);
+                catalog_item.push(category[product]);
+                //name = category[product];
             }
 
             if (product == 1) {
-                catalog.push(category[product].card_img);
+                catalog_item.push(category[product].card_img);
+                catalog_item.push(category[product].roller_guides);
+                catalog_item.push([category[product].width, category[product].height, category[product].depth]);
+                catalog_item.push(category.length - 1)
+                catalog.push(catalog_card_create(catalog_item));
+                catalog_item = [];
             }
         }
     }
@@ -112,7 +124,12 @@ export function show_catalog(event) {
     main.dataset.page = CATALOG_PAGE;
     highlight_menu_item('menu_catalog');
 
-    catalog_card_create(catalog);
+    catalog.forEach(function (item) {
+        main.appendChild(item);
+    });
+
+    //change_lang2();
+    //catalog_card_create(catalog);
 }
 
 export function show_all_goods() {
@@ -157,10 +174,6 @@ export function show_our_address() {
     highlight_menu_item('menu_our_address');
 }
 
-export function show_product(obj) {
-
-}
-
 export function show_pages_links() {
     const main = document.getElementById('main');
     const data_page = main.dataset.page;
@@ -196,5 +209,16 @@ export function show_pages_links() {
     default: {
         console.log('пиши функцию!!!!');
     }
+    }
+}
+
+export function show_products(array) {
+    console.log(array);
+
+    for (const key in DRESSERS) {
+        const category = DRESSERS[key];
+        if (category[0] === array) {
+            console.log(category);
+        }
     }
 }
