@@ -8,7 +8,8 @@ import {
 } from './dressers.js';
 
 import {
-    show_products
+    show_products,
+    show_product_info
 } from './pages.js';
 
 const path_img = './assets/product/';
@@ -18,7 +19,7 @@ const RU_LANG = 'ru';
 
 export function product_card_create(obj) {
     console.log('product_card_create ', obj);
-    const lang = document.getElementById('show_language').dataset.lang || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
+    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
     const card_border = document.createElement('div');
     card_border.className = 'card_border';
@@ -57,6 +58,9 @@ export function product_card_create(obj) {
     card_button.dataset.en = WEBSITE_INFO.select[EN_LANG];
     card_button.dataset.pl = WEBSITE_INFO.select[PL_LANG];
     card_button.dataset.ru = WEBSITE_INFO.select[RU_LANG];
+    card_button.onclick = function(){
+        show_product_info(obj);
+    }
     card_border.appendChild(card_button);
 
     return card_border;

@@ -40,6 +40,15 @@ export function change_lang(lang) {
 
     const menu_our_address = document.getElementById('menu_our_address');
     menu_our_address.innerHTML = WEBSITE_INFO.menu_our_address[lang];
+
+    const data_attr_lang = '[data-' + lang + ']';
+
+    const change_lang_array = document.querySelectorAll(data_attr_lang);
+
+    data.forEach(function (item) {
+        const name = item.dataset[lang];
+        item.innerHTML = name;
+    });
 }
 
 export function change_lang2() {

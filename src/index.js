@@ -25,6 +25,31 @@ import {
     show_start_page
 } from './pages.js';
 
+const temp_obj = {
+    name: '1',
+    category_name: NAME_DRESSERS.chord,
+    card_img: ['chord1_small_1.jpg', 'chord1_small_2.jpg'],
+    imgs: ['chord1_1.jpg', 'chord1_2.jpg', 'chord1_3.jpg'],
+    roller_guides: 225.00,
+    ball_guides: 274.00,
+    body_color: BODY_COLOR.sonoma_oak,
+    facade_color: BODY_COLOR.sonoma_oak,
+    size: '',
+    width: '100',
+    height: '90',
+    depth: '45',
+    weight: '',
+    build_option: '7',
+    body_material: '',
+    facade_material: '',
+    equipment: '',
+    additional_information: '',
+    category: '',
+    vendor_code: '',
+    tags: '',
+
+};
+
 const EN_LANG = 'en';
 const PL_LANG = 'pl';
 const RU_LANG = 'ru';
@@ -72,9 +97,9 @@ console.log(website_lang);
 window.addEventListener('load', () => {
     change_lang(website_lang);
     fill_info();
-    //show_main_page();
-    //show_all_goods();
-    show_catalog();
+    //show_start_page();
+    //show_what_need_know();
+    show_product_info(temp_obj);
 }, false);
 
 window.addEventListener('unload', () => {

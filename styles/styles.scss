@@ -348,7 +348,8 @@ ul {
 
     cursor: pointer;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         border: $width_card_border solid $color9;
 
         .card_name {
@@ -510,7 +511,8 @@ ul {
 
     cursor: pointer;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         border: $width_card_border solid $color9;
     }
 }
@@ -623,4 +625,129 @@ ul {
         background: $color5;
         color: $color_white;
     }
+}
+
+.know_header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px;
+    font-size: 25px;
+}
+
+.know_div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.know_div_color {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.know_p {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1.4rem;
+}
+
+.know_ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: flex-start;
+    font-size: 1.4rem;
+    align-items: flex-start;
+    margin: 10px 20px;
+}
+
+.know_li {
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
+.color_card {
+    width: 150px;
+    margin: 15px;
+    position: relative;
+    border: 5px solid $color2;
+    cursor: pointer;
+
+    &:hover {
+        border: 5px solid $color1;
+
+        .color_img_text {
+            background-color: $color1;
+            color: $color_white;
+        }
+    }
+}
+
+.color_img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.color_img_text {
+    width: 100%;
+    padding: 10px;
+    color: $color_black;
+    text-align: center;
+    text-transform: uppercase;
+    background: $color2;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    box-shadow: 0 -10px 20px -5px hsla(0, 0%, 0%, .4);
+    font-size: 13px;
+}
+
+.know_roller_div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.equipment_div_text_center {
+    width: 100%;
+    margin: 10px 0 25px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-decoration: underline;
+}
+
+.equipment_text {
+    display: block;
+    width: 100%;
+    font-size: 1.4rem;
+}
+
+.equipment_text_p {
+    display: inline;
+}
+
+.equipment_text_p_akcent {
+    width: 100%;
+    display: flex;
+    margin: 20px 0;
+    font-size: 15px;
+    font-weight: bold;
 }
