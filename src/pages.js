@@ -12,7 +12,8 @@ import {
     WARRANTY_EN,
     WARRANTY_PL,
     WARRANTY_RU,
-    BODY_COLOR
+    BODY_COLOR,
+    CURRENCY_UNIT
 } from './lang.js';
 
 import {
@@ -29,6 +30,7 @@ import {
 } from './change_lang.js';
 
 const path_img_color = './assets/img/';
+const path_img = './assets/product/';
 
 const MAIN_PAGE = 'main_page';
 const CATALOG_PAGE = 'catalog_page';
@@ -359,7 +361,7 @@ export function show_what_need_know() {
         color_img_text.dataset.ru = card_info.ru;
         color_card.appendChild(color_img_text);
 
-        color_card.onclick = function(){
+        color_card.onclick = function () {
             show_image(color_img.src);
         }
 
@@ -608,4 +610,502 @@ export function show_image(path) {
 
 export function show_product_info(obj) {
     console.log(obj);
+
+    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
+    const main = document.getElementById('main');
+    main.innerHTML = '';
+
+    const short_info = document.createElement('div');
+    short_info.className = 'short_info_product';
+
+    const short_info_images = document.createElement('div');
+    short_info_images.className = 'short_info_images';
+
+    const info_image_div = document.createElement('div');
+    info_image_div.className = 'info_image_div';
+
+    const info_image = document.createElement('img');
+    info_image.className = 'info_image';
+    info_image.src = path_img + obj.imgs[0];
+    info_image.alt = obj.category_name[EN_LANG];
+    info_image_div.appendChild(info_image);
+
+    short_info_images.appendChild(info_image_div);
+    short_info.appendChild(short_info_images);
+
+    const info_images_div = document.createElement('div');
+    info_images_div.className = 'info_images_div';
+
+    const images_array_product = obj.imgs;
+
+    images_array_product.forEach(function (item) {
+        const small_image_product_div = document.createElement('div');
+        small_image_product_div.className = 'small_image_product_div';
+
+        const small_image_product = document.createElement('img');
+        small_image_product.className = 'small_image_product';
+        small_image_product.src = path_img + item;
+        small_image_product.alt = obj.category_name[EN_LANG];
+
+        /* функция клика чтобы картинки были большие */
+
+        small_image_product_div.appendChild(small_image_product);
+        info_images_div.appendChild(small_image_product_div);
+    });
+
+    const images_array_product_body = obj.body_color;
+    console.log(images_array_product_body);
+
+    images_array_product_body.forEach(function (item) {
+        const small_image_product_div = document.createElement('div');
+        small_image_product_div.className = 'small_image_product_div';
+
+        const small_image_product = document.createElement('img');
+        small_image_product.className = 'small_image_product';
+        small_image_product.src = path_img_color + item.img;
+        small_image_product.alt = obj.category_name[EN_LANG];
+
+        /* функция клика чтобы картинки были большие */
+
+        small_image_product_div.appendChild(small_image_product);
+        info_images_div.appendChild(small_image_product_div);
+    });
+
+    const images_array_product_facade = obj.facade_color;
+
+    images_array_product_facade.forEach(function (item) {
+        if (!(images_array_product_body.includes(item))) {
+            const small_image_product_div = document.createElement('div');
+            small_image_product_div.className = 'small_image_product_div';
+
+            const small_image_product = document.createElement('img');
+            small_image_product.className = 'small_image_product';
+            small_image_product.src = path_img_color + item.img;
+            small_image_product.alt = obj.category_name[EN_LANG];
+
+            /* функция клика чтобы картинки были большие */
+
+            small_image_product_div.appendChild(small_image_product);
+            info_images_div.appendChild(small_image_product_div);
+        }
+    });
+
+    /*if (obj.body_color[EN_LANG] !== obj.facade_color[EN_LANG]) {
+        const small_image_product_facade_div = document.createElement('div');
+        small_image_product_facade_div.className = 'small_image_product_div';
+
+        const small_image_product_facade = document.createElement('img');
+        small_image_product_facade.className = 'small_image_product';
+        small_image_product_facade.src = path_img_color + obj.facade_color.img;
+        small_image_product_facade.alt = obj.facade_color[EN_LANG];
+
+        // функция клика чтобы картинки были большие
+
+        small_image_product_facade_div.appendChild(small_image_product_facade);
+        info_images_div.appendChild(small_image_product_facade_div);
+    } */
+
+    short_info.appendChild(info_images_div);
+
+    const short_info_text = document.createElement('div');
+    short_info_text.className = 'short_info_text';
+
+    const short_info_header = document.createElement('h3');
+    short_info_header.className = 'short_info_header';
+    short_info_header.innerHTML = obj.category_name[lang] + ' ' + obj.name;
+    short_info_header.dataset.en = obj.category_name[EN_LANG] + ' ' + obj.name;
+    short_info_header.dataset.pl = obj.category_name[PL_LANG] + ' ' + obj.name;
+    short_info_header.dataset.ru = obj.category_name[RU_LANG] + ' ' + obj.name;
+    short_info_text.appendChild(short_info_header);
+
+    const short_info_dimensions = document.createElement('p');
+    short_info_dimensions.className = 'short_info_dimensions';
+    short_info_dimensions.innerHTML = obj.width + WEBSITE_INFO.cm[lang] + ' x ' + obj.height + WEBSITE_INFO.cm[lang] + ' x ' + obj.depth + WEBSITE_INFO.cm[lang];
+    short_info_dimensions.dataset.en = obj.width + WEBSITE_INFO.cm[EN_LANG] + ' x ' + obj.height + WEBSITE_INFO.cm[EN_LANG] + ' x ' + obj.depth + WEBSITE_INFO.cm[EN_LANG];
+    short_info_dimensions.dataset.pl = obj.width + WEBSITE_INFO.cm[PL_LANG] + ' x ' + obj.height + WEBSITE_INFO.cm[PL_LANG] + ' x ' + obj.depth + WEBSITE_INFO.cm[PL_LANG];
+    short_info_dimensions.dataset.ru = obj.width + WEBSITE_INFO.cm[RU_LANG] + ' x ' + obj.height + WEBSITE_INFO.cm[RU_LANG] + ' x ' + obj.depth + WEBSITE_INFO.cm[RU_LANG];
+    short_info_text.appendChild(short_info_dimensions);
+
+    const short_info_colors = document.createElement('div');
+    short_info_colors.className = 'short_info_colors';
+
+    images_array_product_body.forEach(function (item) {
+        if (short_info_colors.innerHTML.length) {
+            const short_info_colors_delimiter = document.createElement('p');
+            short_info_colors_delimiter.innerHTML = ' \\ ';
+            short_info_colors.appendChild(short_info_colors_delimiter);
+        }
+
+        console.log(item);
+
+        const short_info_color_body = document.createElement('p');
+        short_info_color_body.innerHTML = item[lang];
+        short_info_color_body.dataset.en = item[EN_LANG];
+        short_info_color_body.dataset.pl = item[PL_LANG];
+        short_info_color_body.dataset.ru = item[RU_LANG];
+        short_info_colors.appendChild(short_info_color_body);
+    });
+
+    images_array_product_facade.forEach(function (item) {
+        if (!(images_array_product_body.includes(item))) {
+            const short_info_colors_delimiter = document.createElement('p');
+            short_info_colors_delimiter.innerHTML = ' \\ ';
+            short_info_colors.appendChild(short_info_colors_delimiter);
+
+            const short_info_color_body = document.createElement('p');
+            short_info_color_body.innerHTML = item[lang];
+            short_info_color_body.dataset.en = item[EN_LANG];
+            short_info_color_body.dataset.pl = item[PL_LANG];
+            short_info_color_body.dataset.ru = item[RU_LANG];
+            short_info_colors.appendChild(short_info_color_body);
+        }
+    });
+
+    /*const short_info_color_body = document.createElement('p');
+    short_info_color_body.innerHTML = obj.body_color[lang];
+    short_info_color_body.dataset.en = obj.body_color[EN_LANG];
+    short_info_color_body.dataset.pl = obj.body_color[PL_LANG];
+    short_info_color_body.dataset.ru = obj.body_color[RU_LANG];
+    short_info_colors.appendChild(short_info_color_body);
+
+    const short_info_colors_delimiter = document.createElement('p');
+    short_info_colors_delimiter.innerHTML = ' \\ ';
+    short_info_colors.appendChild(short_info_colors_delimiter);
+
+    const short_info_color_facade = document.createElement('p');
+    short_info_color_facade.innerHTML = obj.facade_color[lang];
+    short_info_color_facade.dataset.en = obj.facade_color[EN_LANG];
+    short_info_color_facade.dataset.pl = obj.facade_color[PL_LANG];
+    short_info_color_facade.dataset.ru = obj.facade_color[RU_LANG];
+    short_info_colors.appendChild(short_info_color_facade);*/
+
+    short_info_text.appendChild(short_info_colors);
+
+    const short_info_first_cost_div = document.createElement('div');
+    short_info_first_cost_div.className = 'short_info_cost_div';
+
+    const short_info_first_cost_text = document.createElement('p');
+    short_info_first_cost_text.className = 'short_info_cost_text';
+    short_info_first_cost_text.innerHTML = WEBSITE_INFO.text_roller_guides[lang];
+    short_info_first_cost_text.dataset.en = WEBSITE_INFO.text_roller_guides[EN_LANG];
+    short_info_first_cost_text.dataset.pl = WEBSITE_INFO.text_roller_guides[PL_LANG];
+    short_info_first_cost_text.dataset.ru = WEBSITE_INFO.text_roller_guides[RU_LANG];
+    short_info_first_cost_div.appendChild(short_info_first_cost_text);
+
+    const short_info_first_cost = document.createElement('h3');
+    short_info_first_cost.className = 'short_info_cost';
+    short_info_first_cost.innerHTML = obj.roller_guides + ' ' + CURRENCY_UNIT;
+    short_info_first_cost_div.appendChild(short_info_first_cost);
+
+    short_info_text.appendChild(short_info_first_cost_div);
+
+    const short_info_second_cost_div = document.createElement('div');
+    short_info_second_cost_div.className = 'short_info_cost_div';
+
+    const short_info_second_cost_text = document.createElement('p');
+    short_info_second_cost_text.className = 'short_info_cost_text';
+    short_info_second_cost_text.innerHTML = WEBSITE_INFO.text_ball_guides[lang];
+    short_info_second_cost_text.dataset.en = WEBSITE_INFO.text_ball_guides[EN_LANG];
+    short_info_second_cost_text.dataset.pl = WEBSITE_INFO.text_ball_guides[PL_LANG];
+    short_info_second_cost_text.dataset.ru = WEBSITE_INFO.text_ball_guides[RU_LANG];
+    short_info_second_cost_div.appendChild(short_info_second_cost_text);
+
+    const short_info_second_cost = document.createElement('h3');
+    short_info_second_cost.className = 'short_info_cost';
+    short_info_second_cost.innerHTML = obj.ball_guides + ' ' + CURRENCY_UNIT;
+    short_info_second_cost_div.appendChild(short_info_second_cost);
+
+    short_info_text.appendChild(short_info_second_cost_div);
+
+    const button_add_favorites = document.createElement('button');
+    button_add_favorites.className = 'button_add_favorites';
+    button_add_favorites.innerHTML = WEBSITE_INFO.add_favorites[lang];
+    button_add_favorites.dataset.en = WEBSITE_INFO.add_favorites[EN_LANG];
+    button_add_favorites.dataset.pl = WEBSITE_INFO.add_favorites[PL_LANG];
+    button_add_favorites.dataset.ru = WEBSITE_INFO.add_favorites[RU_LANG];
+    button_add_favorites.onclick = function () {
+        console.log('button_add_favorites');
+    };
+    short_info_text.appendChild(button_add_favorites);
+
+    short_info.appendChild(short_info_text);
+
+    main.appendChild(short_info);
+
+    const full_description = document.createElement('div');
+    full_description.className = 'full_description';
+
+    const full_description_name = document.createElement('h3');
+    full_description_name.className = 'full_description_name';
+    full_description_name.innerHTML = WEBSITE_INFO.full_description[lang];
+    full_description_name.dataset.en = WEBSITE_INFO.full_description[EN_LANG];
+    full_description_name.dataset.pl = WEBSITE_INFO.full_description[PL_LANG];
+    full_description_name.dataset.ru = WEBSITE_INFO.full_description[RU_LANG];
+    full_description.appendChild(full_description_name);
+
+    const full_description_body_color_div = document.createElement('div');
+    full_description_body_color_div.className = 'full_description_div';
+
+    const full_description_body_label = document.createElement('p');
+    full_description_body_label.className = 'full_description_label';
+    full_description_body_label.innerHTML = WEBSITE_INFO.body_color[lang];
+    full_description_body_label.dataset.en = WEBSITE_INFO.body_color[EN_LANG];
+    full_description_body_label.dataset.pl = WEBSITE_INFO.body_color[PL_LANG];
+    full_description_body_label.dataset.ru = WEBSITE_INFO.body_color[RU_LANG];
+    full_description_body_color_div.appendChild(full_description_body_label);
+
+    const full_description_body_text = document.createElement('p');
+    full_description_body_text.className = 'full_description_text';
+
+    images_array_product_body.forEach(function (item) {
+        if (full_description_body_text.innerHTML.length) {
+            const full_description_body_text_delimiter = document.createElement('span');
+            full_description_body_text_delimiter.innerHTML = ' \\ ';
+            full_description_body_text.appendChild(full_description_body_text_delimiter);
+        }
+
+        const full_description_body_text_span = document.createElement('span');
+        full_description_body_text_span.innerHTML = item[lang];
+        full_description_body_text_span.dataset.en = item[EN_LANG];
+        full_description_body_text_span.dataset.pl = item[PL_LANG];
+        full_description_body_text_span.dataset.ru = item[RU_LANG];
+        full_description_body_text.appendChild(full_description_body_text_span);
+    });
+
+    full_description_body_color_div.appendChild(full_description_body_text);
+    full_description.appendChild(full_description_body_color_div);
+
+    const full_description_facade_color_div = document.createElement('div');
+    full_description_facade_color_div.className = 'full_description_div';
+
+    const full_description_facade_label = document.createElement('p');
+    full_description_facade_label.className = 'full_description_label';
+    full_description_facade_label.innerHTML = WEBSITE_INFO.facade_color[lang];
+    full_description_facade_label.dataset.en = WEBSITE_INFO.facade_color[EN_LANG];
+    full_description_facade_label.dataset.pl = WEBSITE_INFO.facade_color[PL_LANG];
+    full_description_facade_label.dataset.ru = WEBSITE_INFO.facade_color[RU_LANG];
+    full_description_facade_color_div.appendChild(full_description_facade_label);
+
+    const full_description_facade_text = document.createElement('p');
+    full_description_facade_text.className = 'full_description_text';
+
+    images_array_product_facade.forEach(function (item) {
+        if (full_description_facade_text.innerHTML.length) {
+            const full_description_facade_text_delimiter = document.createElement('span');
+            full_description_facade_text_delimiter.innerHTML = ' \\ ';
+            full_description_facade_text.appendChild(full_description_facade_text_delimiter);
+        }
+
+        const full_description_facade_text_span = document.createElement('span');
+        full_description_facade_text_span.innerHTML = item[lang];
+        full_description_facade_text_span.dataset.en = item[EN_LANG];
+        full_description_facade_text_span.dataset.pl = item[PL_LANG];
+        full_description_facade_text_span.dataset.ru = item[RU_LANG];
+        full_description_facade_text.appendChild(full_description_facade_text_span);
+    });
+
+    full_description_facade_color_div.appendChild(full_description_facade_text);
+    full_description.appendChild(full_description_facade_color_div);
+
+    const full_description_width_div = document.createElement('div');
+    full_description_width_div.className = 'full_description_div';
+
+    const full_description_width_label = document.createElement('p');
+    full_description_width_label.className = 'full_description_label';
+    full_description_width_label.innerHTML = WEBSITE_INFO.width[lang];
+    full_description_width_label.dataset.en = WEBSITE_INFO.width[EN_LANG];
+    full_description_width_label.dataset.pl = WEBSITE_INFO.width[PL_LANG];
+    full_description_width_label.dataset.ru = WEBSITE_INFO.width[RU_LANG];
+    full_description_width_div.appendChild(full_description_width_label);
+
+    const full_description_width_text = document.createElement('p');
+    full_description_width_text.className = 'full_description_text';
+    full_description_width_text.innerHTML = obj.width + ' ' + WEBSITE_INFO.cm[lang];
+    full_description_width_text.dataset.en = obj.width + ' ' + WEBSITE_INFO.cm[EN_LANG];
+    full_description_width_text.dataset.pl = obj.width + ' ' + WEBSITE_INFO.cm[PL_LANG];
+    full_description_width_text.dataset.ru = obj.width + ' ' + WEBSITE_INFO.cm[RU_LANG];
+    full_description_width_div.appendChild(full_description_width_text);
+    full_description.appendChild(full_description_width_div);
+
+    const full_description_height_div = document.createElement('div');
+    full_description_height_div.className = 'full_description_div';
+
+    const full_description_height_label = document.createElement('p');
+    full_description_height_label.className = 'full_description_label';
+    full_description_height_label.innerHTML = WEBSITE_INFO.height[lang];
+    full_description_height_label.dataset.en = WEBSITE_INFO.height[EN_LANG];
+    full_description_height_label.dataset.pl = WEBSITE_INFO.height[PL_LANG];
+    full_description_height_label.dataset.ru = WEBSITE_INFO.height[RU_LANG];
+    full_description_height_div.appendChild(full_description_height_label);
+
+    const full_description_height_text = document.createElement('p');
+    full_description_height_text.className = 'full_description_text';
+    full_description_height_text.innerHTML = obj.height + ' ' + WEBSITE_INFO.cm[lang];
+    full_description_height_text.dataset.en = obj.height + ' ' + WEBSITE_INFO.cm[EN_LANG];
+    full_description_height_text.dataset.pl = obj.height + ' ' + WEBSITE_INFO.cm[PL_LANG];
+    full_description_height_text.dataset.ru = obj.height + ' ' + WEBSITE_INFO.cm[RU_LANG];
+    full_description_height_div.appendChild(full_description_height_text);
+    full_description.appendChild(full_description_height_div);
+
+    const full_description_depth_div = document.createElement('div');
+    full_description_depth_div.className = 'full_description_div';
+
+    const full_description_depth_label = document.createElement('p');
+    full_description_depth_label.className = 'full_description_label';
+    full_description_depth_label.innerHTML = WEBSITE_INFO.depth[lang];
+    full_description_depth_label.dataset.en = WEBSITE_INFO.depth[EN_LANG];
+    full_description_depth_label.dataset.pl = WEBSITE_INFO.depth[PL_LANG];
+    full_description_depth_label.dataset.ru = WEBSITE_INFO.depth[RU_LANG];
+    full_description_depth_div.appendChild(full_description_depth_label);
+
+    const full_description_depth_text = document.createElement('p');
+    full_description_depth_text.className = 'full_description_text';
+    full_description_depth_text.innerHTML = obj.depth + ' ' + WEBSITE_INFO.cm[lang];
+    full_description_depth_text.dataset.en = obj.depth + ' ' + WEBSITE_INFO.cm[EN_LANG];
+    full_description_depth_text.dataset.pl = obj.depth + ' ' + WEBSITE_INFO.cm[PL_LANG];
+    full_description_depth_text.dataset.ru = obj.depth + ' ' + WEBSITE_INFO.cm[RU_LANG];
+    full_description_depth_div.appendChild(full_description_depth_text);
+    full_description.appendChild(full_description_depth_div);
+
+    const full_description_weight_div = document.createElement('div');
+    full_description_weight_div.className = 'full_description_div';
+
+    const full_description_weight_label = document.createElement('p');
+    full_description_weight_label.className = 'full_description_label';
+    full_description_weight_label.innerHTML = WEBSITE_INFO.weight[lang];
+    full_description_weight_label.dataset.en = WEBSITE_INFO.weight[EN_LANG];
+    full_description_weight_label.dataset.pl = WEBSITE_INFO.weight[PL_LANG];
+    full_description_weight_label.dataset.ru = WEBSITE_INFO.weight[RU_LANG];
+    full_description_weight_div.appendChild(full_description_weight_label);
+
+    const full_description_weight_text = document.createElement('p');
+    full_description_weight_text.className = 'full_description_text';
+    full_description_weight_text.innerHTML = obj.weight + ' ' + WEBSITE_INFO.kg[lang];
+    full_description_weight_text.dataset.en = obj.weight + ' ' + WEBSITE_INFO.kg[EN_LANG];
+    full_description_weight_text.dataset.pl = obj.weight + ' ' + WEBSITE_INFO.kg[PL_LANG];
+    full_description_weight_text.dataset.ru = obj.weight + ' ' + WEBSITE_INFO.kg[RU_LANG];
+    full_description_weight_div.appendChild(full_description_weight_text);
+    full_description.appendChild(full_description_weight_div);
+
+    const full_description_build_option_div = document.createElement('div');
+    full_description_build_option_div.className = 'full_description_div';
+
+    const full_description_build_option_label = document.createElement('p');
+    full_description_build_option_label.className = 'full_description_label';
+    full_description_build_option_label.innerHTML = WEBSITE_INFO.build_option[lang];
+    full_description_build_option_label.dataset.en = WEBSITE_INFO.build_option[EN_LANG];
+    full_description_build_option_label.dataset.pl = WEBSITE_INFO.build_option[PL_LANG];
+    full_description_build_option_label.dataset.ru = WEBSITE_INFO.build_option[RU_LANG];
+    full_description_build_option_div.appendChild(full_description_build_option_label);
+
+    const full_description_build_option_text = document.createElement('p');
+    full_description_build_option_text.className = 'full_description_text';
+
+    const build_option_array = obj.build_option;
+
+    build_option_array.forEach(function (item) {
+        if (full_description_build_option_text.innerHTML.length) {
+            const full_description_build_option_text_delimiter = document.createElement('span');
+            full_description_build_option_text_delimiter.innerHTML = ' \\ ';
+            full_description_build_option_text.appendChild(full_description_build_option_text_delimiter);
+        }
+
+        const full_description_build_option_text_span = document.createElement('span');
+        full_description_build_option_text_span.innerHTML = item[lang];
+        full_description_build_option_text_span.dataset.en = item[EN_LANG];
+        full_description_build_option_text_span.dataset.pl = item[PL_LANG];
+        full_description_build_option_text_span.dataset.ru = item[RU_LANG];
+        full_description_build_option_text.appendChild(full_description_build_option_text_span);
+    });
+
+    full_description_build_option_div.appendChild(full_description_build_option_text);
+    full_description.appendChild(full_description_build_option_div);
+
+    const full_description_body_material_div = document.createElement('div');
+    full_description_body_material_div.className = 'full_description_div';
+
+    const full_description_body_material_label = document.createElement('p');
+    full_description_body_material_label.className = 'full_description_label';
+    full_description_body_material_label.innerHTML = WEBSITE_INFO.body_material[lang];
+    full_description_body_material_label.dataset.en = WEBSITE_INFO.body_material[EN_LANG];
+    full_description_body_material_label.dataset.pl = WEBSITE_INFO.body_material[PL_LANG];
+    full_description_body_material_label.dataset.ru = WEBSITE_INFO.body_material[RU_LANG];
+    full_description_body_material_div.appendChild(full_description_body_material_label);
+
+    const full_description_body_material_text = document.createElement('p');
+    full_description_body_material_text.className = 'full_description_text';
+
+    const body_material_array = obj.body_material;
+
+    body_material_array.forEach(function (item) {
+        if (full_description_body_material_text.innerHTML.length) {
+            const full_description_body_material_text_delimiter = document.createElement('span');
+            full_description_body_material_text_delimiter.innerHTML = ' \\ ';
+            full_description_body_material_text.appendChild(full_description_body_material_text_delimiter);
+        }
+
+        const full_description_body_material_text_span = document.createElement('span');
+        full_description_body_material_text_span.innerHTML = item[lang];
+        full_description_body_material_text_span.dataset.en = item[EN_LANG];
+        full_description_body_material_text_span.dataset.pl = item[PL_LANG];
+        full_description_body_material_text_span.dataset.ru = item[RU_LANG];
+        full_description_body_material_text.appendChild(full_description_body_material_text_span);
+    });
+
+    full_description_body_material_div.appendChild(full_description_body_material_text);
+    full_description.appendChild(full_description_body_material_div);
+
+    const full_description_facade_material_div = document.createElement('div');
+    full_description_facade_material_div.className = 'full_description_div';
+
+    const full_description_facade_material_label = document.createElement('p');
+    full_description_facade_material_label.className = 'full_description_label';
+    full_description_facade_material_label.innerHTML = WEBSITE_INFO.facade_material[lang];
+    full_description_facade_material_label.dataset.en = WEBSITE_INFO.facade_material[EN_LANG];
+    full_description_facade_material_label.dataset.pl = WEBSITE_INFO.facade_material[PL_LANG];
+    full_description_facade_material_label.dataset.ru = WEBSITE_INFO.facade_material[RU_LANG];
+    full_description_facade_material_div.appendChild(full_description_facade_material_label);
+
+    const full_description_facade_material_text = document.createElement('p');
+    full_description_facade_material_text.className = 'full_description_text';
+
+    const facade_material_array = obj.facade_material;
+
+    facade_material_array.forEach(function (item) {
+        if (full_description_facade_material_text.innerHTML.length) {
+            const full_description_facade_material_text_delimiter = document.createElement('span');
+            full_description_facade_material_text_delimiter.innerHTML = ' \\ ';
+            full_description_facade_material_text.appendChild(full_description_facade_material_text_delimiter);
+        }
+
+        const full_description_facade_material_text_span = document.createElement('span');
+        full_description_facade_material_text_span.innerHTML = item[lang];
+        full_description_facade_material_text_span.dataset.en = item[EN_LANG];
+        full_description_facade_material_text_span.dataset.pl = item[PL_LANG];
+        full_description_facade_material_text_span.dataset.ru = item[RU_LANG];
+        full_description_facade_material_text.appendChild(full_description_facade_material_text_span);
+    });
+
+    full_description_facade_material_div.appendChild(full_description_facade_material_text);
+    full_description.appendChild(full_description_facade_material_div);
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    main.appendChild(full_description);
 }

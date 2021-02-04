@@ -45,7 +45,7 @@ export function change_lang(lang) {
 
     const change_lang_array = document.querySelectorAll(data_attr_lang);
 
-    data.forEach(function (item) {
+    change_lang_array.forEach(function (item) {
         const name = item.dataset[lang];
         item.innerHTML = name;
     });

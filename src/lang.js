@@ -51,8 +51,17 @@ export const BODY_COLOR = {
         pl: 'Dąb Vintage Dąb',
         ru: 'Дуб Винтаж Оксид',
         img: 'sonoma_oak.jpg'
-    }
-}
+    },
+};
+
+export const BODY_MATERIAL = {
+    chipboard: {
+        en: 'Chipboard',
+        pl: 'Płyta wiórowa',
+        ru: 'ЛДСП',
+    },
+};
+
 
 /*
 en: '',
@@ -444,11 +453,92 @@ export const WEBSITE_INFO = {
         en: 'Phone for ordering and inquiries: ',
         pl: 'Telefon do zamówień i zapytań: ',
         ru: 'Телефон для заказа и справок: '
-    }
+    },
+    text_roller_guides: {
+        en: 'price with roller guides',
+        pl: 'cena z prowadnicami rolkowymi',
+        ru: 'цена с роликовыми направляющими'
+    },
+    text_ball_guides: {
+        en: 'price with ball guides',
+        pl: 'cena z prowadnicami kulkowymi',
+        ru: 'цена с шариковыми направляющими'
+    },
+    add_favorites: {
+        en: 'Add to favorites',
+        pl: 'Dodaj do ulubionych',
+        ru: 'Добавить в избранное'
+    },
+    full_description: {
+        en: 'Full description',
+        pl: 'Pełny opis',
+        ru: 'Полное описание'
+    },
+    cm: {
+        en: 'cm',
+        pl: 'cm',
+        ru: 'см'
+    },
+    body_color: {
+        en: 'Body color: ',
+        pl: 'Kolor skóry: ',
+        ru: 'Цвет корпуса: '
+    },
+    facade_color: {
+        en: 'Facade color: ',
+        pl: 'Kolor elewacji: ',
+        ru: 'Цвет фасада: '
+    },
+    width: {
+        en: 'Width: ',
+        pl: 'Szerokość: ',
+        ru: 'Ширина: '
+    },
+    height: {
+        en: 'Height: ',
+        pl: 'Wysokość: ',
+        ru: 'Высота: '
+    },
+    depth: {
+        en: 'Depth: ',
+        pl: 'Głębokość: ',
+        ru: 'Глубина: '
+    },
+    build_option: {
+        en: 'Build option: ',
+        pl: 'Opcja budowania: ',
+        ru: 'Вариант сборки: '
+    },
+    body_material: {
+        en: 'Body material: ',
+        pl: 'Materiał korpusu: ',
+        ru: 'Материал корпуса: '
+    },
+    facade_material: {
+        en: 'Facade material: ',
+        pl: 'Materiał elewacyjny: ',
+        ru: 'Материал фасада: '
+    },
+    weight: {
+        en: 'Weight: ',
+        pl: 'Waga: ',
+        ru: 'Вес: '
+    },
+    kg: {
+        en: 'kg',
+        pl: 'kg',
+        ru: 'кг'
+    },
 }
 
 /*
 en: '',
         pl: '',
         ru: ''
+
+        b: {
+        en: '',
+        pl: '',
+        ru: ''
+    },
 */

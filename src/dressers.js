@@ -1,6 +1,8 @@
 import {
     NAME_DRESSERS,
-    BODY_COLOR
+    BODY_COLOR,
+    BODY_MATERIAL,
+    TAGS
 } from './lang.js';
 
 export const DRESSERS = {
@@ -13,21 +15,21 @@ export const DRESSERS = {
             imgs: ['chord1_1.jpg', 'chord1_2.jpg', 'chord1_3.jpg'],
             roller_guides: 225.00,
             ball_guides: 274.00,
-            body_color: BODY_COLOR.sonoma_oak,
-            facade_color: BODY_COLOR.sonoma_oak,
+            body_color: [BODY_COLOR.sonoma_oak],
+            facade_color: [BODY_COLOR.sonoma_oak],
             size: '',
             width: '100',
             height: '90',
             depth: '45',
-            weight: '',
-            build_option: '7',
-            body_material: '',
-            facade_material: '',
+            weight: '54',
+            build_option: [TAGS.two_shelves, TAGS.eight_shuffles],
+            body_material: [BODY_MATERIAL.chipboard],
+            facade_material: [BODY_MATERIAL.chipboard],
             equipment: '',
             additional_information: '',
             category: '',
             vendor_code: '',
-            tags: '',
+            tags: [TAGS.two_shelves, TAGS.eight_shuffles, TAGS.one_hundred_twenty, TAGS.with_shelf],
 
         },
         {
