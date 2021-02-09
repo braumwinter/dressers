@@ -55,7 +55,7 @@ export function highlight_menu_item(menu_item_id) {
 
 
 export function show_favorites() {
-    const favorites_dressers = JSON.parse(localStorage.getItem('favorites_dressers'));
+    const favorites_dressers = localStorage.getItem('favorites_dressers');
     const main = document.getElementById('main');
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
@@ -63,13 +63,119 @@ export function show_favorites() {
 
     show_pages_links();
 
-    if ((favorites_dressers === null) || (favorites_dressers === undefined)) {
+    if ((favorites_dressers === null) || (favorites_dressers === undefined) || (favorites_dressers.length == 0)) {
         main.innerHTML = '';
-        main.innerHTML = WEBSITE_INFO.no_chosen_one[lang];
-    } else {
-        main.innerHTML = '';
-        main.innerHTML = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+
+        const no_chosen_one = document.createElement('p');
+        no_chosen_one.className = 'no_chosen_one';
+        no_chosen_one.innerHTML = WEBSITE_INFO.no_chosen_one[lang];
+        no_chosen_one.dataset.en = WEBSITE_INFO.no_chosen_one[EN_LANG];
+        no_chosen_one.dataset.pl = WEBSITE_INFO.no_chosen_one[PL_LANG];
+        no_chosen_one.dataset.ru = WEBSITE_INFO.no_chosen_one[RU_LANG];
+        main.appendChild(no_chosen_one);
+
+        return;
     }
+
+    const info_arr = favorites_dressers.split(',');
+    const info_structure = [];
+
+    if ((favorites_dressers === null) || (favorites_dressers === null)) {
+        console.log(is_found);
+        return is_found;
+    }
+
+    for (let i = 0; i < info_arr.length; i = i + 4) {
+        const obj = {};
+        obj[EN_LANG] = info_arr[i];
+        obj[PL_LANG] = info_arr[i + 1];
+        obj[RU_LANG] = info_arr[i + 2];
+
+        info_structure.push(obj);
+        info_structure.push(info_arr[i + 3]);
+    }
+
+    console.log(info_structure);
+
+    const catalog = [];
+
+    for (const key in DRESSERS) {
+        const category = DRESSERS[key];
+        for (const product in category) {
+            if (product != 0) {
+                const product_info = category[product];
+                console.log(product_info);
+                for (let i = 0; i < info_structure.length; i = i + 2) {
+                    let is_first_equal = false;
+                    let is_second_equal = false;
+                    let is_third_equal = false;
+                    let is_fourth_equal = false;
+
+                    console.log(info_structure[i][EN_LANG], product_info.category_name[EN_LANG]);
+                    if (info_structure[i][EN_LANG] == product_info.category_name[EN_LANG]) {
+                        console.log('yes');
+                        is_first_equal = true;
+                    }
+                    if (info_structure[i][PL_LANG] == product_info.category_name[PL_LANG]) {
+                        console.log('yes');
+                        is_second_equal = true;
+                    }
+                    if (info_structure[i][RU_LANG] == product_info.category_name[RU_LANG]) {
+                        console.log('yes');
+                        is_third_equal = true;
+                    }
+
+                    //console.log(info_structure[i][EN_LANG], product_info.category_name[EN_LANG]);
+                    if (info_structure[i + 1] == product_info.name) {
+                        console.log('yes');
+                        is_fourth_equal = true;
+                    }
+
+                    if (is_first_equal && is_second_equal && is_third_equal && is_fourth_equal) {
+                        console.log('yes');
+                        catalog.push(product_card_create(category[product]));
+                    }
+                }
+
+            }
+        }
+    }
+
+    main.innerHTML = '';
+    catalog.forEach(function (item) {
+        main.appendChild(item);
+    });
+
+    const remove_everything_favorites_div = document.createElement('div');
+    remove_everything_favorites_div.className = 'remove_everything_favorites_div';
+
+    const remove_everything_favorites_button = document.createElement('button');
+    remove_everything_favorites_button.className = 'remove_everything_favorites_button';
+    remove_everything_favorites_button.innerHTML = WEBSITE_INFO.remove_everything_favorites[lang];
+    remove_everything_favorites_button.dataset.en = WEBSITE_INFO.remove_everything_favorites[EN_LANG];
+    remove_everything_favorites_button.dataset.pl = WEBSITE_INFO.remove_everything_favorites[PL_LANG];
+    remove_everything_favorites_button.dataset.ru = WEBSITE_INFO.remove_everything_favorites[RU_LANG];
+    remove_everything_favorites_button.onclick = function () {
+        const delete_question = WEBSITE_INFO.question_favorites[lang];
+        const is_delete = confirm(delete_question);
+
+        if (is_delete) {
+            localStorage.setItem('favorites_dressers', '');
+            main.innerHTML = '';
+
+            const no_chosen_one = document.createElement('p');
+            no_chosen_one.className = 'no_chosen_one';
+            no_chosen_one.innerHTML = WEBSITE_INFO.no_chosen_one[lang];
+            no_chosen_one.dataset.en = WEBSITE_INFO.no_chosen_one[EN_LANG];
+            no_chosen_one.dataset.pl = WEBSITE_INFO.no_chosen_one[PL_LANG];
+            no_chosen_one.dataset.ru = WEBSITE_INFO.no_chosen_one[RU_LANG];
+            main.appendChild(no_chosen_one);
+        }
+
+    };
+    remove_everything_favorites_div.appendChild(remove_everything_favorites_button);
+    main.appendChild(remove_everything_favorites_div);
+
 
     main.dataset.page = MAIN_PAGE;
     const pages_links = document.getElementById('pages_links');
@@ -818,14 +924,31 @@ export function show_product_info(obj) {
     short_info_text.appendChild(short_info_second_cost_div);
 
     const button_add_favorites = document.createElement('button');
-    button_add_favorites.className = 'button_add_favorites';
-    button_add_favorites.innerHTML = WEBSITE_INFO.add_favorites[lang];
-    button_add_favorites.dataset.en = WEBSITE_INFO.add_favorites[EN_LANG];
-    button_add_favorites.dataset.pl = WEBSITE_INFO.add_favorites[PL_LANG];
-    button_add_favorites.dataset.ru = WEBSITE_INFO.add_favorites[RU_LANG];
-    button_add_favorites.onclick = function () {
-        console.log('button_add_favorites');
-    };
+    button_add_favorites.id = 'button_add_favorites';
+
+    const info_names = [obj.category_name, obj.name];
+    if (check_favorites(info_names)) {
+        button_add_favorites.className = 'button_add_favorites button_add_favorites_active';
+        button_add_favorites.innerHTML = WEBSITE_INFO.remove_favorites[lang];
+        button_add_favorites.dataset.en = WEBSITE_INFO.remove_favorites[EN_LANG];
+        button_add_favorites.dataset.pl = WEBSITE_INFO.remove_favorites[PL_LANG];
+        button_add_favorites.dataset.ru = WEBSITE_INFO.remove_favorites[RU_LANG];
+        button_add_favorites.onclick = function () {
+            const favorites_info = [obj.category_name, obj.name];
+            delete_favorites(favorites_info);
+        };
+    } else {
+        button_add_favorites.className = 'button_add_favorites';
+        button_add_favorites.innerHTML = WEBSITE_INFO.add_favorites[lang];
+        button_add_favorites.dataset.en = WEBSITE_INFO.add_favorites[EN_LANG];
+        button_add_favorites.dataset.pl = WEBSITE_INFO.add_favorites[PL_LANG];
+        button_add_favorites.dataset.ru = WEBSITE_INFO.add_favorites[RU_LANG];
+        button_add_favorites.onclick = function () {
+            const favorites_info = [obj.category_name, obj.name];
+            add_favorites(favorites_info);
+        };
+    }
+
     short_info_text.appendChild(button_add_favorites);
 
     short_info.appendChild(short_info_text);
@@ -1089,23 +1212,180 @@ export function show_product_info(obj) {
     full_description_facade_material_div.appendChild(full_description_facade_material_text);
     full_description.appendChild(full_description_facade_material_div);
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     main.appendChild(full_description);
+}
+
+export function add_favorites(array) {
+    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
+
+    const favorites_dressers = localStorage.getItem('favorites_dressers');
+
+    console.log(array);
+    const save_info_arr = [];
+
+    const category_names = array[0];
+
+    for (const key in category_names) {
+        const name = category_names[key];
+        save_info_arr.push(name);
+    }
+
+    save_info_arr.push(array[1]);
+    const save_info_str = save_info_arr.join();
+
+    let save;
+
+    if ((favorites_dressers === null) || (favorites_dressers === null) || (favorites_dressers.length == 0)) {
+        save = save_info_str;
+    } else {
+        save = favorites_dressers + ',' + save_info_str;
+    }
+
+    localStorage.setItem('favorites_dressers', save);
+
+    /*const favorites_dressers2 = localStorage.getItem('favorites_dressers');
+    const info = favorites_dressers2.split(',');
+
+    console.log(info);*/
+
+    const button_add_favorites = document.getElementById('button_add_favorites');
+    button_add_favorites.className = 'button_add_favorites button_add_favorites_active';
+    button_add_favorites.innerHTML = WEBSITE_INFO.remove_favorites[lang];
+    button_add_favorites.dataset.en = WEBSITE_INFO.remove_favorites[EN_LANG];
+    button_add_favorites.dataset.pl = WEBSITE_INFO.remove_favorites[PL_LANG];
+    button_add_favorites.dataset.ru = WEBSITE_INFO.remove_favorites[RU_LANG];
+    button_add_favorites.onclick = function () {
+        const favorites_info = [obj.category_name, obj.name];
+        delete_favorites(favorites_info);
+    };
+}
+
+export function delete_favorites(array) {
+    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
+
+    const favorites_dressers = localStorage.getItem('favorites_dressers');
+    const info_arr = favorites_dressers.split(',');
+    const info_structure = [];
+    let delete_index = undefined;
+
+    if ((favorites_dressers === null) || (favorites_dressers === null) || (favorites_dressers.length == 0)) {
+        console.log(is_found);
+        return is_found;
+    }
+
+    for (let i = 0; i < info_arr.length; i = i + 4) {
+        const obj = {};
+        obj[EN_LANG] = info_arr[i];
+        obj[PL_LANG] = info_arr[i + 1];
+        obj[RU_LANG] = info_arr[i + 2];
+
+        info_structure.push(obj);
+        info_structure.push(info_arr[i + 3]);
+    }
+
+    console.log(info_structure);
+
+    for (let i = 0; i < info_structure.length; i = i + 2) {
+        let is_first_equal = false;
+        let is_second_equal = false;
+        let is_third_equal = false;
+        let is_fourth_equal = false;
+
+        if (info_structure[i][EN_LANG] == array[0][EN_LANG]) {
+            is_first_equal = true;
+        }
+        if (info_structure[i][PL_LANG] == array[0][PL_LANG]) {
+            is_second_equal = true;
+        }
+        if (info_structure[i][RU_LANG] == array[0][RU_LANG]) {
+            is_third_equal = true;
+        }
+        if (info_structure[i + 1] == array[1]) {
+            is_fourth_equal = true;
+        }
+
+        if (is_first_equal && is_second_equal && is_third_equal && is_fourth_equal) {
+            delete_index = i;
+        }
+    }
+
+    info_structure.splice(delete_index, 2);
+
+    const new_save_info_arr = [];
+
+    for (let i = 0; i < info_structure.length; i = i + 2) {
+        new_save_info_arr.push(info_structure[i][EN_LANG]);
+        new_save_info_arr.push(info_structure[i][PL_LANG]);
+        new_save_info_arr.push(info_structure[i][RU_LANG]);
+        new_save_info_arr.push(info_structure[i + 1]);
+    }
+
+    const new_save_info_str = new_save_info_arr.join();
+    localStorage.setItem('favorites_dressers', new_save_info_str);
+
+
+    const button_add_favorites = document.getElementById('button_add_favorites');
+    button_add_favorites.className = 'button_add_favorites';
+    button_add_favorites.innerHTML = WEBSITE_INFO.add_favorites[lang];
+    button_add_favorites.dataset.en = WEBSITE_INFO.add_favorites[EN_LANG];
+    button_add_favorites.dataset.pl = WEBSITE_INFO.add_favorites[PL_LANG];
+    button_add_favorites.dataset.ru = WEBSITE_INFO.add_favorites[RU_LANG];
+    button_add_favorites.onclick = function () {
+        const favorites_info = [obj.category_name, obj.name];
+        add_favorites(favorites_info);
+    };
+}
+
+export function check_favorites(array) {
+    let is_found = false;
+
+    const favorites_dressers = localStorage.getItem('favorites_dressers');
+
+    if ((favorites_dressers === null) || (favorites_dressers === null) || (favorites_dressers.length == 0)) {
+        console.log(is_found);
+        return is_found;
+    }
+
+    const info_arr = favorites_dressers.split(',');
+    const info_structure = [];
+
+    for (let i = 0; i < info_arr.length; i = i + 4) {
+        const obj = {};
+        obj[EN_LANG] = info_arr[i];
+        obj[PL_LANG] = info_arr[i + 1];
+        obj[RU_LANG] = info_arr[i + 2];
+
+        info_structure.push(obj);
+        info_structure.push(info_arr[i + 3]);
+    }
+
+    console.log(info_structure);
+
+    for (let i = 0; i < info_structure.length; i = i + 2) {
+        let is_first_equal = false;
+        let is_second_equal = false;
+        let is_third_equal = false;
+        let is_fourth_equal = false;
+
+        if (info_structure[i][EN_LANG] == array[0][EN_LANG]) {
+            is_first_equal = true;
+        }
+        if (info_structure[i][PL_LANG] == array[0][PL_LANG]) {
+            is_second_equal = true;
+        }
+        if (info_structure[i][RU_LANG] == array[0][RU_LANG]) {
+            is_third_equal = true;
+        }
+        if (info_structure[i + 1] == array[1]) {
+            is_fourth_equal = true;
+        }
+
+        if (is_first_equal && is_second_equal && is_third_equal && is_fourth_equal) {
+            is_found = true;
+        }
+    }
+
+    console.log(is_found);
+
+    return is_found;
 }

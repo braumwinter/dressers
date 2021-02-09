@@ -12,7 +12,8 @@ import {
 } from './change_lang.js';
 
 import {
-    fill_info
+    fill_info,
+    add_dropdown_catalog
 } from './fill_info.js';
 
 import {
@@ -71,7 +72,7 @@ const save_user_lang = localStorage.getItem('save_user_lang');
 const show_lang = document.getElementById('show_language');
 
 const last_state = localStorage.getItem('last_state');
-if ((last_state === null) || (last_state === undefined)) {
+if ((last_state === null) || (last_state === undefined) || (last_state.length == 0)) {
     localStorage.setItem('last_state', 'main');
 } else {
     define_language(save_user_lang);
@@ -105,9 +106,11 @@ console.log(website_lang);
 window.addEventListener('load', () => {
     change_lang(website_lang);
     fill_info();
+    //add_dropdown_catalog(website_lang);
     //show_start_page();
     //show_what_need_know();
     show_product_info(temp_obj);
+    add_dropdown_catalog(website_lang);
 }, false);
 
 window.addEventListener('unload', () => {

@@ -294,6 +294,11 @@ export const WEBSITE_INFO = {
         pl: 'nasz adres',
         ru: 'наш адрес'
     },
+    menu_tags: {
+        en: 'tags',
+        pl: 'tagi',
+        ru: 'теги'
+    },
     select: {
         en: 'select',
         pl: 'wybierz',
@@ -528,6 +533,26 @@ export const WEBSITE_INFO = {
         en: 'kg',
         pl: 'kg',
         ru: 'кг'
+    },
+    in_favorites: {
+        en: 'in favorites',
+        pl: 'w ulubionych',
+        ru: 'в избранном'
+    },
+    remove_favorites: {
+        en: 'remove from favorites',
+        pl: 'usuń z ulubionych',
+        ru: 'удалить из избранного'
+    },
+    remove_everything_favorites: {
+        en: 'remove everything from favorites',
+        pl: 'usuń wszystko z ulubionych',
+        ru: 'удалить всё из избранного'
+    },
+    question_favorites: {
+        en: 'are you sure you want to remove everything from favorites?',
+        pl: 'czy na pewno chcesz usunąć wszystko z ulubionych?',
+        ru: 'вы действительно хотите удалить всё из избранного?'
     },
 }
 

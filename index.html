@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Best Dressers</title>
     <link rel="stylesheet" href="./styles/styles.css">
-    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="shortcut icon" href="./cabinet.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -34,7 +34,6 @@
                             <li class="language_item" id="language_item_pl" data-lang='pl'>PL</li>
                             <li class="language_item" id="language_item_ru" data-lang='ru'>RU</li>
                         </ul>
-                        </li>
                         <img class="show_language_img" src="./assets/img/list_arrow.png" alt="arrow">
                     </div>
                 </div>
@@ -62,18 +61,30 @@
         <div class="container">
             <ul class="menu_list" id="menu_list">
                 <li class="menu_item" id="menu_main"></li>
-                <li class="menu_item" id="menu_catalog"></li>
+
+                <li class="menu_item show_dropdown_menu">
+                    <span id="menu_catalog"></span>
+                    <ul class="dropdown_menu_list" id="dropdown_catalog"></ul>
+                    <img class="show_dropdown_menu_img" src="./assets/img/list_arrow.png" alt="arrow">
+                </li>
+
                 <li class="menu_item" id="menu_all_goods"></li>
+
                 <li class="menu_item" id="menu_what_need_know"></li>
+
                 <li class="menu_item" id="menu_our_address"></li>
+
+                <li class="menu_item show_dropdown_menu">
+                    <span id="menu_tags"></span>
+                    <ul class="dropdown_menu_list" id="dropdown_tags"></ul>
+                    <img class="show_dropdown_menu_img" src="./assets/img/list_arrow.png" alt="arrow">
+                </li>
             </ul>
         </div> <!-- /container -->
     </div> <!-- /menu -->
 
     <div class="container">
-        <div class="pages_links" id="pages_links">
-            
-        </div>
+        <div class="pages_links" id="pages_links"></div>
 
         <div class="main" id="main"></div>
     </div> <!-- /container -->

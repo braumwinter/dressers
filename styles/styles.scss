@@ -293,11 +293,12 @@ ul {
 .menu_item {
     position: relative;
 
-    display: inline-block;
+    display: flex;
     line-height: 1;
     text-decoration: none;
     padding: 10px;
     margin: 0 10px;
+    align-items: center;
 
     cursor: pointer;
 
@@ -305,6 +306,7 @@ ul {
         content: "";
         position: absolute;
         left: 50%;
+        top: 70%;
 
         display: block;
         width: 0%;
@@ -325,6 +327,50 @@ ul {
     &:focus:after {
         width: 100%;
     }
+}
+
+.show_dropdown_menu {
+    transition: .5s linear;
+}
+
+.dropdown_menu_list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    background-color: #8d8d8d;
+    border-radius: $border_radius_lang;
+    //border: 1px solid black;
+
+    width: 100%;
+    z-index: 10;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+
+    -webkit-transform: scaleY(0);
+    -ms-transform: scaleY(0);
+    transform: scaleY(0);
+    -webkit-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.show_dropdown_menu:hover .dropdown_menu_list {
+    -webkit-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    transform: scaleY(1);
+}
+
+.show_dropdown_menu_img {
+    width: 10px;
+    height: 10px;
+    margin-left: 10px;
+    -webkit-filter: invert(1);
+    filter: invert(1);
 }
 
 .menu_item_active:after {
@@ -900,6 +946,16 @@ ul {
     }
 }
 
+.button_add_favorites_active {
+    background: $color5;
+    color: $color_white;
+
+    &:hover {
+        background: $color_white;
+        color: $color5;
+    }
+}
+
 .full_description {
     display: flex;
     flex-direction: column;
@@ -937,4 +993,43 @@ ul {
     margin-right: 10px;
 }
 
-.full_description_text {}
+.no_chosen_one {
+    font-size: 2rem;
+}
+
+.remove_everything_favorites_div {
+    display: flex;
+    width: 100%;
+    margin: 20px 0;
+}
+
+.remove_everything_favorites_button {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    height: 45px;
+    width: 370px;
+
+    border-radius: 35px;
+
+    background: $color_white;
+    color: red;
+    font-size: 20px;
+    border: 2px solid red;
+    transition: 0.3s;
+
+    outline: none;
+    text-align: center;
+    
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    cursor: pointer;
+
+    &:hover {
+        background: red;
+        color: $color_white;
+    }
+}

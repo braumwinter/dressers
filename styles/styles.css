@@ -326,11 +326,16 @@ ul {
 
 .menu_item {
   position: relative;
-  display: inline-block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   line-height: 1;
   text-decoration: none;
   padding: 10px;
   margin: 0 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   cursor: pointer;
 }
 
@@ -338,6 +343,7 @@ ul {
   content: "";
   position: absolute;
   left: 50%;
+  top: 70%;
   display: block;
   width: 0%;
   height: 1px;
@@ -352,6 +358,47 @@ ul {
 
 .menu_item:hover:after, .menu_item:focus:after {
   width: 100%;
+}
+
+.show_dropdown_menu {
+  -webkit-transition: .5s linear;
+  transition: .5s linear;
+}
+
+.dropdown_menu_list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #8d8d8d;
+  border-radius: 8px;
+  width: 100%;
+  z-index: 10;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  -webkit-transform: scaleY(0);
+  transform: scaleY(0);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.show_dropdown_menu:hover .dropdown_menu_list {
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}
+
+.show_dropdown_menu_img {
+  width: 10px;
+  height: 10px;
+  margin-left: 10px;
+  -webkit-filter: invert(1);
+  filter: invert(1);
 }
 
 .menu_item_active:after {
@@ -1049,6 +1096,16 @@ ul {
   color: #ffffff;
 }
 
+.button_add_favorites_active {
+  background: #291f1d;
+  color: #ffffff;
+}
+
+.button_add_favorites_active:hover {
+  background: #ffffff;
+  color: #291f1d;
+}
+
 .full_description {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1113,5 +1170,43 @@ ul {
 .full_description_label {
   font-weight: bold;
   margin-right: 10px;
+}
+
+.no_chosen_one {
+  font-size: 2rem;
+}
+
+.remove_everything_favorites_div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.remove_everything_favorites_button {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  height: 45px;
+  width: 370px;
+  border-radius: 35px;
+  background: #ffffff;
+  color: red;
+  font-size: 20px;
+  border: 2px solid red;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  outline: none;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.remove_everything_favorites_button:hover {
+  background: red;
+  color: #ffffff;
 }
 /*# sourceMappingURL=styles.css.map */

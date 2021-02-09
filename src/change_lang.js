@@ -41,6 +41,9 @@ export function change_lang(lang) {
     const menu_our_address = document.getElementById('menu_our_address');
     menu_our_address.innerHTML = WEBSITE_INFO.menu_our_address[lang];
 
+    const menu_tags = document.getElementById('menu_tags');
+    menu_tags.innerHTML = WEBSITE_INFO.menu_tags[lang];
+
     const data_attr_lang = '[data-' + lang + ']';
 
     const change_lang_array = document.querySelectorAll(data_attr_lang);
