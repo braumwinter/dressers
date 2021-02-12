@@ -278,6 +278,8 @@ ul {
     font-size: 1.4rem;
 
     .container {
+        position: relative;
+
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -783,6 +785,7 @@ ul {
 .equipment_text {
     display: block;
     width: 100%;
+    margin-bottom: 20px;
     font-size: 1.4rem;
 }
 
@@ -796,6 +799,17 @@ ul {
     margin: 20px 0;
     font-size: 15px;
     font-weight: bold;
+}
+
+.know_additional_div {
+display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.know_additional_p {
+    margin: 15px 0;
 }
 
 .short_info_product {
@@ -1020,7 +1034,7 @@ ul {
 
     outline: none;
     text-align: center;
-    
+
 
     white-space: nowrap;
     overflow: hidden;
@@ -1030,6 +1044,186 @@ ul {
 
     &:hover {
         background: red;
+        color: $color_white;
+    }
+}
+
+#dropdown_catalog {
+    width: 300px;
+
+    border: 1px solid $color_black;
+}
+
+#dropdown_tags {
+    width: 160px;
+
+    border: 1px solid $color_black;
+}
+
+.dropdown_menu_item {
+    padding: 10px;
+
+    color: $color_white;
+
+    &:not(:last-child) {
+        border-bottom: 1px solid $color_black;
+    }
+
+    &:first-child {
+        border-radius: $border_radius_lang $border_radius_lang 0 0;
+    }
+
+    &:last-child {
+        border-radius: 0 0 $border_radius_lang $border_radius_lang;
+    }
+
+    &:hover {
+        color: $color_black;
+        background-color: $color2;
+    }
+}
+
+.search_div {
+    position: relative;
+    height: 40px;
+}
+
+.search_input {
+    height: 40px;
+    width: 0;
+    padding: 0 42px 0 15px;
+    border: none;
+    //border-bottom: 2px solid transparent;
+    border-radius: 8px;
+    outline: none;
+    background: transparent;
+    transition: .4s cubic-bezier(0, 0.8, 0, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+
+    background-image: none;
+}
+
+.search_input_active {
+    width: 300px;
+    z-index: 1;
+    //border-bottom: 2px solid $color_black;
+    background-color: $color_white;
+    background-image: url('./../assets/img/search.png');
+    background-position: 260px center;
+    background-repeat: no-repeat;
+    background-size: 34px;
+}
+
+.search_form:focus {
+    .search_input {
+        width: 300px;
+        z-index: 1;
+        //border-bottom: 2px solid $color_black;
+        background-color: $color_white;
+    }
+}
+
+/*
+.search_input:focus {
+    width: 300px;
+    z-index: 1;
+    //border-bottom: 2px solid $color_black;
+    background-color: $color_white;
+
+    #search_button {
+        z-index: 50;
+        filter: invert(0);
+    }
+}*/
+
+.search_button {
+    position: absolute;
+    top: 3px;
+    right: 2px;
+
+    height: 34px;
+    width: 34px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    filter: invert(1);
+    cursor: pointer;
+}
+
+.button_submit {
+    position: absolute;
+    top: 3px;
+    right: 2px;
+
+    height: 34px;
+    width: 34px;
+
+    border: none;
+
+    background: transparent;
+    background-image: url('./../assets/img/search.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 34px 34px;
+
+    z-index: 5;
+
+    //filter: invert(1);
+    cursor: pointer;
+}
+
+.no_results_div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+}
+
+.no_results_header {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.no_results_p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.button_back {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    height: 45px;
+    width: 294px;
+    margin-top: 20px;
+
+    border-radius: 35px;
+
+    background: $color_white;
+    color: $color5;
+    font-size: 20px;
+    border: 2px solid $color5;
+    transition: 0.3s;
+
+    outline: none;
+    text-align: center;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    cursor: pointer;
+
+    &:hover {
+        background: $color5;
         color: $color_white;
     }
 }

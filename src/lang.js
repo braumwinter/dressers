@@ -554,6 +554,41 @@ export const WEBSITE_INFO = {
         pl: 'czy na pewno chcesz usunąć wszystko z ulubionych?',
         ru: 'вы действительно хотите удалить всё из избранного?'
     },
+    whd_short: {
+        en: 'WHD',
+        pl: 'SWG',
+        ru: 'ШВГ'
+    },
+    search_here: {
+        en: 'search here...',
+        pl: 'szukaj tutaj...',
+        ru: 'искать здесь...'
+    },
+    no_results: {
+        en: 'No results were found for your search.',
+        pl: 'Nie znaleziono żadnych wyników wyszukiwania.',
+        ru: 'По вашему запросу ничего не найдено.'
+    },
+    try_change_request: {
+        en: 'Try to change your request.',
+        pl: 'Spróbuj zmienić swoją prośbę.',
+        ru: 'Попробуйте изменить ваш запрос.'
+    },
+    check_request_typos: {
+        en: 'Check your request for typos.',
+        pl: 'Sprawdź swoją prośbę pod kątem literówek.',
+        ru: 'Проверьте, нет ли опечаток в запросе.'
+    },
+    back_to_main: {
+        en: 'go back to the main page',
+        pl: 'wróć do strony głównej',
+        ru: 'вернуться на главную'
+    },
+    show_all_button: {
+        en: 'show all products',
+        pl: 'pokaż wszystkie produkty',
+        ru: 'показать все товары'
+    },
 }
 
 /*

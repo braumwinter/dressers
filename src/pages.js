@@ -13,7 +13,8 @@ import {
     WARRANTY_PL,
     WARRANTY_RU,
     BODY_COLOR,
-    CURRENCY_UNIT
+    CURRENCY_UNIT,
+    COST_REPLACING_BALL_GUIDES
 } from './lang.js';
 
 import {
@@ -81,7 +82,7 @@ export function show_favorites() {
     const info_structure = [];
 
     if ((favorites_dressers === null) || (favorites_dressers === null)) {
-        console.log(is_found);
+        //console.log(is_found);
         return is_found;
     }
 
@@ -95,7 +96,7 @@ export function show_favorites() {
         info_structure.push(info_arr[i + 3]);
     }
 
-    console.log(info_structure);
+    //console.log(info_structure);
 
     const catalog = [];
 
@@ -104,35 +105,35 @@ export function show_favorites() {
         for (const product in category) {
             if (product != 0) {
                 const product_info = category[product];
-                console.log(product_info);
+                //console.log(product_info);
                 for (let i = 0; i < info_structure.length; i = i + 2) {
                     let is_first_equal = false;
                     let is_second_equal = false;
                     let is_third_equal = false;
                     let is_fourth_equal = false;
 
-                    console.log(info_structure[i][EN_LANG], product_info.category_name[EN_LANG]);
+                    //console.log(info_structure[i][EN_LANG], product_info.category_name[EN_LANG]);
                     if (info_structure[i][EN_LANG] == product_info.category_name[EN_LANG]) {
-                        console.log('yes');
+                        //console.log('yes');
                         is_first_equal = true;
                     }
                     if (info_structure[i][PL_LANG] == product_info.category_name[PL_LANG]) {
-                        console.log('yes');
+                        //console.log('yes');
                         is_second_equal = true;
                     }
                     if (info_structure[i][RU_LANG] == product_info.category_name[RU_LANG]) {
-                        console.log('yes');
+                        //console.log('yes');
                         is_third_equal = true;
                     }
 
                     //console.log(info_structure[i][EN_LANG], product_info.category_name[EN_LANG]);
                     if (info_structure[i + 1] == product_info.name) {
-                        console.log('yes');
+                        //console.log('yes');
                         is_fourth_equal = true;
                     }
 
                     if (is_first_equal && is_second_equal && is_third_equal && is_fourth_equal) {
-                        console.log('yes');
+                        //console.log('yes');
                         catalog.push(product_card_create(category[product]));
                     }
                 }
@@ -221,9 +222,10 @@ export function show_main(event) {
     const main = document.getElementById('main');
     main.innerHTML = '';
 
-    console.log(main.dataset.page);
+    //console.log(main.dataset.page);
     show_pages_links();
 
+    const catalog = [];
     let catalog_item = [];
 
     for (const key in DRESSERS) {
@@ -259,7 +261,7 @@ export function show_catalog() {
     const catalog = [];
     const main = document.getElementById('main');
     main.innerHTML = '';
-    console.log(main.dataset.page);
+    //console.log(main.dataset.page);
     show_pages_links();
 
     let catalog_item = [];
@@ -371,18 +373,18 @@ export function show_what_need_know() {
 
     const delivery_li_0 = document.createElement('li');
     delivery_li_0.className = 'know_li';
-    delivery_li_0.innerHTML = WEBSITE_INFO.paragraph_16[lang] + ' ' + COST_DELIVERY_ENTRANCE;
-    delivery_li_0.dataset.en = WEBSITE_INFO.paragraph_16[EN_LANG] + ' ' + COST_DELIVERY_ENTRANCE;
-    delivery_li_0.dataset.pl = WEBSITE_INFO.paragraph_16[PL_LANG] + ' ' + COST_DELIVERY_ENTRANCE;
-    delivery_li_0.dataset.ru = WEBSITE_INFO.paragraph_16[RU_LANG] + ' ' + COST_DELIVERY_ENTRANCE;
+    delivery_li_0.innerHTML = WEBSITE_INFO.paragraph_16[lang] + ' ' + COST_DELIVERY_ENTRANCE + CURRENCY_UNIT;
+    delivery_li_0.dataset.en = WEBSITE_INFO.paragraph_16[EN_LANG] + ' ' + COST_DELIVERY_ENTRANCE + CURRENCY_UNIT;
+    delivery_li_0.dataset.pl = WEBSITE_INFO.paragraph_16[PL_LANG] + ' ' + COST_DELIVERY_ENTRANCE + CURRENCY_UNIT;
+    delivery_li_0.dataset.ru = WEBSITE_INFO.paragraph_16[RU_LANG] + ' ' + COST_DELIVERY_ENTRANCE + CURRENCY_UNIT;
     delivery_ul.appendChild(delivery_li_0);
 
     const delivery_li_1 = document.createElement('li');
     delivery_li_1.className = 'know_li';
-    delivery_li_1.innerHTML = WEBSITE_INFO.paragraph_17[lang] + ' ' + COST_DELIVERY_APARTMENT;
-    delivery_li_1.dataset.en = WEBSITE_INFO.paragraph_17[EN_LANG] + ' ' + COST_DELIVERY_APARTMENT;
-    delivery_li_1.dataset.pl = WEBSITE_INFO.paragraph_17[PL_LANG] + ' ' + COST_DELIVERY_APARTMENT;
-    delivery_li_1.dataset.ru = WEBSITE_INFO.paragraph_17[RU_LANG] + ' ' + COST_DELIVERY_APARTMENT;
+    delivery_li_1.innerHTML = WEBSITE_INFO.paragraph_17[lang] + ' ' + COST_DELIVERY_APARTMENT + CURRENCY_UNIT;
+    delivery_li_1.dataset.en = WEBSITE_INFO.paragraph_17[EN_LANG] + ' ' + COST_DELIVERY_APARTMENT + CURRENCY_UNIT;
+    delivery_li_1.dataset.pl = WEBSITE_INFO.paragraph_17[PL_LANG] + ' ' + COST_DELIVERY_APARTMENT + CURRENCY_UNIT;
+    delivery_li_1.dataset.ru = WEBSITE_INFO.paragraph_17[RU_LANG] + ' ' + COST_DELIVERY_APARTMENT + CURRENCY_UNIT;
     delivery_ul.appendChild(delivery_li_1);
 
     let delivery_li_2_lang;
@@ -397,10 +399,10 @@ export function show_what_need_know() {
 
     const delivery_li_2 = document.createElement('li');
     delivery_li_2.className = 'know_li';
-    delivery_li_2.innerHTML = delivery_li_2_lang + ' ' + WEBSITE_INFO.paragraph_18[lang] + ' ' + COST_DELIVERY_ANY_LOCATION;
-    delivery_li_2.dataset.en = DELIVERY_COUNTRY_EN + ' ' + WEBSITE_INFO.paragraph_18[EN_LANG] + ' ' + COST_DELIVERY_ANY_LOCATION;
-    delivery_li_2.dataset.pl = DELIVERY_COUNTRY_EN + ' ' + WEBSITE_INFO.paragraph_18[PL_LANG] + ' ' + COST_DELIVERY_ANY_LOCATION;
-    delivery_li_2.dataset.ru = DELIVERY_COUNTRY_EN + ' ' + WEBSITE_INFO.paragraph_18[RU_LANG] + ' ' + COST_DELIVERY_ANY_LOCATION;
+    delivery_li_2.innerHTML = delivery_li_2_lang + ' ' + WEBSITE_INFO.paragraph_18[lang] + ' ' + COST_DELIVERY_ANY_LOCATION + CURRENCY_UNIT;
+    delivery_li_2.dataset.en = DELIVERY_COUNTRY_EN + ' ' + WEBSITE_INFO.paragraph_18[EN_LANG] + ' ' + COST_DELIVERY_ANY_LOCATION + CURRENCY_UNIT;
+    delivery_li_2.dataset.pl = DELIVERY_COUNTRY_EN + ' ' + WEBSITE_INFO.paragraph_18[PL_LANG] + ' ' + COST_DELIVERY_ANY_LOCATION + CURRENCY_UNIT;
+    delivery_li_2.dataset.ru = DELIVERY_COUNTRY_EN + ' ' + WEBSITE_INFO.paragraph_18[RU_LANG] + ' ' + COST_DELIVERY_ANY_LOCATION + CURRENCY_UNIT;
     delivery_ul.appendChild(delivery_li_2);
 
     let delivery_li_3_lang;
@@ -626,7 +628,38 @@ export function show_what_need_know() {
     equipment_ball_text.appendChild(equipment_ball_ul);
     main.appendChild(equipment_ball_text);
 
+    /*  */
 
+    const know_additional_div = document.createElement('div');
+    know_additional_div.className = 'know_additional_div';
+
+    const know_additional_p0 = document.createElement('p');
+    know_additional_p0.className = 'know_additional_p equipment_text_p_akcent';
+    know_additional_p0.innerHTML = WEBSITE_INFO.paragraph_12[lang];
+    know_additional_p0.dataset.en = WEBSITE_INFO.paragraph_12[EN_LANG];
+    know_additional_p0.dataset.pl = WEBSITE_INFO.paragraph_12[PL_LANG];
+    know_additional_p0.dataset.ru = WEBSITE_INFO.paragraph_12[RU_LANG];
+    know_additional_div.appendChild(know_additional_p0);
+
+    const know_additional_p1 = document.createElement('p');
+    know_additional_p1.className = 'know_additional_p';
+    know_additional_p1.innerHTML = WEBSITE_INFO.paragraph_13[lang] + COST_REPLACING_BALL_GUIDES + CURRENCY_UNIT;
+    know_additional_p1.dataset.en = WEBSITE_INFO.paragraph_13[EN_LANG] + COST_REPLACING_BALL_GUIDES + CURRENCY_UNIT;
+    know_additional_p1.dataset.pl = WEBSITE_INFO.paragraph_13[PL_LANG] + COST_REPLACING_BALL_GUIDES + CURRENCY_UNIT;
+    know_additional_p1.dataset.ru = WEBSITE_INFO.paragraph_13[RU_LANG] + COST_REPLACING_BALL_GUIDES + CURRENCY_UNIT;
+    know_additional_div.appendChild(know_additional_p1);
+
+    const cost_four_shuflya = 4 * COST_REPLACING_BALL_GUIDES;
+
+    const know_additional_p2 = document.createElement('p');
+    know_additional_p2.className = 'know_additional_p';
+    know_additional_p2.innerHTML = WEBSITE_INFO.paragraph_14[lang] + cost_four_shuflya + CURRENCY_UNIT;
+    know_additional_p2.dataset.en = WEBSITE_INFO.paragraph_14[EN_LANG] + cost_four_shuflya + CURRENCY_UNIT;
+    know_additional_p2.dataset.pl = WEBSITE_INFO.paragraph_14[PL_LANG] + cost_four_shuflya + CURRENCY_UNIT;
+    know_additional_p2.dataset.ru = WEBSITE_INFO.paragraph_14[RU_LANG] + cost_four_shuflya + CURRENCY_UNIT;
+    know_additional_div.appendChild(know_additional_p2);
+
+    main.appendChild(know_additional_div);
 
     highlight_menu_item('menu_what_need_know');
 }
@@ -653,7 +686,7 @@ export function show_pages_links() {
 
     switch (data_page) {
         case MAIN_PAGE: {
-            console.log(MAIN_PAGE);
+            //console.log(MAIN_PAGE);
             const main_page_link = document.createElement('a');
             main_page_link.className = 'pages_link'
             main_page_link.innerHTML = WEBSITE_INFO.main_page[lang];
@@ -665,15 +698,15 @@ export function show_pages_links() {
             break;
         };
     case CATALOG_PAGE: {
-        console.log(CATALOG_PAGE);
+        //console.log(CATALOG_PAGE);
         break;
     };
     case ALL_PRODUCT_PAGE: {
-        console.log(ALL_PRODUCT_PAGE);
+        //console.log(ALL_PRODUCT_PAGE);
         break;
     };
     default: {
-        console.log('пиши функцию!!!!');
+        //console.log('пиши функцию!!!!');
     }
     }
 }
@@ -708,14 +741,14 @@ export function show_image(path) {
     const main = document.getElementById('main');
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
-    console.log(path);
+    //console.log(path);
 
     /* background: rgba(0, 170, 238, 0.9); */
     const shadow = document.createElement('div');
 }
 
 export function show_product_info(obj) {
-    console.log(obj);
+    //console.log(obj);
 
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
     const main = document.getElementById('main');
@@ -760,7 +793,7 @@ export function show_product_info(obj) {
     });
 
     const images_array_product_body = obj.body_color;
-    console.log(images_array_product_body);
+    //console.log(images_array_product_body);
 
     images_array_product_body.forEach(function (item) {
         const small_image_product_div = document.createElement('div');
@@ -842,7 +875,7 @@ export function show_product_info(obj) {
             short_info_colors.appendChild(short_info_colors_delimiter);
         }
 
-        console.log(item);
+        //console.log(item);
 
         const short_info_color_body = document.createElement('p');
         short_info_color_body.innerHTML = item[lang];
@@ -1220,7 +1253,7 @@ export function add_favorites(array) {
 
     const favorites_dressers = localStorage.getItem('favorites_dressers');
 
-    console.log(array);
+    //console.log(array);
     const save_info_arr = [];
 
     const category_names = array[0];
@@ -1269,7 +1302,7 @@ export function delete_favorites(array) {
     let delete_index = undefined;
 
     if ((favorites_dressers === null) || (favorites_dressers === null) || (favorites_dressers.length == 0)) {
-        console.log(is_found);
+        //console.log(is_found);
         return is_found;
     }
 
@@ -1283,7 +1316,7 @@ export function delete_favorites(array) {
         info_structure.push(info_arr[i + 3]);
     }
 
-    console.log(info_structure);
+    //console.log(info_structure);
 
     for (let i = 0; i < info_structure.length; i = i + 2) {
         let is_first_equal = false;
@@ -1342,7 +1375,7 @@ export function check_favorites(array) {
     const favorites_dressers = localStorage.getItem('favorites_dressers');
 
     if ((favorites_dressers === null) || (favorites_dressers === null) || (favorites_dressers.length == 0)) {
-        console.log(is_found);
+        //console.log(is_found);
         return is_found;
     }
 
@@ -1359,7 +1392,7 @@ export function check_favorites(array) {
         info_structure.push(info_arr[i + 3]);
     }
 
-    console.log(info_structure);
+    //console.log(info_structure);
 
     for (let i = 0; i < info_structure.length; i = i + 2) {
         let is_first_equal = false;
@@ -1385,7 +1418,159 @@ export function check_favorites(array) {
         }
     }
 
-    console.log(is_found);
+    //console.log(is_found);
 
     return is_found;
+}
+
+export function show_category(name_obj) {
+    //console.log(name_obj);
+
+    const main = document.getElementById('main');
+    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
+
+    highlight_menu_item('no_light');
+
+    const catalog = [];
+
+    for (const key in DRESSERS) {
+        const category = DRESSERS[key];
+        for (const products in category) {
+            //console.log(category[0]);
+            //const product_info = category[products];
+            if (category[0][EN_LANG] == name_obj[EN_LANG]) {
+                if (products != 0) {
+                    catalog.push(product_card_create(category[products]));
+                }
+            }
+        }
+    }
+
+    if (catalog.length) {
+        //console.log('catalog.length');
+        main.innerHTML = '';
+        catalog.forEach(function (item) {
+            main.appendChild(item);
+        });
+    } else {
+        //console.log('no');
+        main.innerHTML = '';
+
+        const no_results_div = document.createElement('div');
+        no_results_div.className = 'no_results_div';
+
+        const no_results_header = document.createElement('h3');
+        no_results_header.className = 'no_results_header';
+        no_results_header.innerHTML = WEBSITE_INFO.no_results[lang];
+        no_results_header.dataset.en = WEBSITE_INFO.no_results[EN_LANG];
+        no_results_header.dataset.pl = WEBSITE_INFO.no_results[PL_LANG];
+        no_results_header.dataset.ru = WEBSITE_INFO.no_results[RU_LANG];
+        no_results_div.appendChild(no_results_header);
+
+        const button_back = document.createElement('button');
+        button_back.className = 'button_back';
+        button_back.innerHTML = WEBSITE_INFO.back_to_main[lang];
+        button_back.dataset.en = WEBSITE_INFO.back_to_main[EN_LANG];
+        button_back.dataset.pl = WEBSITE_INFO.back_to_main[PL_LANG];
+        button_back.dataset.ru = WEBSITE_INFO.back_to_main[RU_LANG];
+        button_back.onclick = function () {
+            show_main();
+        };
+        no_results_div.appendChild(button_back);
+
+        const button_all = document.createElement('button');
+        button_all.className = 'button_back';
+        button_all.innerHTML = WEBSITE_INFO.show_all_button[lang];
+        button_all.dataset.en = WEBSITE_INFO.show_all_button[EN_LANG];
+        button_all.dataset.pl = WEBSITE_INFO.show_all_button[PL_LANG];
+        button_all.dataset.ru = WEBSITE_INFO.show_all_button[RU_LANG];
+        button_all.onclick = function () {
+            show_all_goods();
+        };
+        no_results_div.appendChild(button_all);
+
+        main.appendChild(no_results_div);
+    }
+}
+
+export function show_tags(name_tag) {
+    //console.log(name_tag);
+
+    const main = document.getElementById('main');
+    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
+
+    highlight_menu_item('no_light');
+
+    const catalog = [];
+
+    for (const key in DRESSERS) {
+        const category = DRESSERS[key];
+        for (const products in category) {
+            const product_info = category[products];
+            if (products != 0) {
+                console.log(product_info.tags);
+
+                const tags_arr = product_info.tags;
+
+                if (tags_arr.length) {
+                    for (let tags_index = 0; tags_index < tags_arr.length; tags_index++) {
+                        console.log(tags_arr[tags_index][EN_LANG]);
+                        if (tags_arr[tags_index][EN_LANG] == name_tag[EN_LANG]) {
+                            console.log('yes');
+                            catalog.push(product_card_create(product_info));
+                            continue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    console.log(catalog);
+
+    if (catalog.length) {
+        //console.log('catalog.length');
+        main.innerHTML = '';
+        catalog.forEach(function (item) {
+            main.appendChild(item);
+        });
+    } else {
+        //console.log('no');
+        main.innerHTML = '';
+
+        const no_results_div = document.createElement('div');
+        no_results_div.className = 'no_results_div';
+
+        const no_results_header = document.createElement('h3');
+        no_results_header.className = 'no_results_header';
+        no_results_header.innerHTML = WEBSITE_INFO.no_results[lang];
+        no_results_header.dataset.en = WEBSITE_INFO.no_results[EN_LANG];
+        no_results_header.dataset.pl = WEBSITE_INFO.no_results[PL_LANG];
+        no_results_header.dataset.ru = WEBSITE_INFO.no_results[RU_LANG];
+        no_results_div.appendChild(no_results_header);
+
+        const button_back = document.createElement('button');
+        button_back.className = 'button_back';
+        button_back.innerHTML = WEBSITE_INFO.back_to_main[lang];
+        button_back.dataset.en = WEBSITE_INFO.back_to_main[EN_LANG];
+        button_back.dataset.pl = WEBSITE_INFO.back_to_main[PL_LANG];
+        button_back.dataset.ru = WEBSITE_INFO.back_to_main[RU_LANG];
+        button_back.onclick = function () {
+            show_main();
+        };
+        no_results_div.appendChild(button_back);
+
+        const button_all = document.createElement('button');
+        button_all.className = 'button_back';
+        button_all.innerHTML = WEBSITE_INFO.show_all_button[lang];
+        button_all.dataset.en = WEBSITE_INFO.show_all_button[EN_LANG];
+        button_all.dataset.pl = WEBSITE_INFO.show_all_button[PL_LANG];
+        button_all.dataset.ru = WEBSITE_INFO.show_all_button[RU_LANG];
+        button_all.onclick = function () {
+            show_all_goods();
+        };
+        no_results_div.appendChild(button_all);
+
+        main.appendChild(no_results_div);
+    }
 }

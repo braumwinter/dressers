@@ -18,7 +18,7 @@ const PL_LANG = 'pl';
 const RU_LANG = 'ru';
 
 export function product_card_create(obj) {
-    console.log('product_card_create ', obj);
+    //console.log('product_card_create ', obj);
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
     const card_border = document.createElement('div');

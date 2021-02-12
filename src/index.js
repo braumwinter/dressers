@@ -13,7 +13,8 @@ import {
 
 import {
     fill_info,
-    add_dropdown_catalog
+    add_dropdown_catalog,
+    add_dropdown_tags
 } from './fill_info.js';
 
 import {
@@ -33,6 +34,12 @@ import {
     BODY_MATERIAL,
     TAGS
 } from './lang.js';
+
+import {
+    search_activation,
+    search_blur,
+    search
+} from './search.js';
 
 const temp_obj = {
     name: '1',
@@ -101,7 +108,7 @@ if ((save_user_lang === null) || (save_user_lang === undefined)) {
 } else {
     define_language(save_user_lang);
 }
-console.log(website_lang);
+//console.log(website_lang);
 
 window.addEventListener('load', () => {
     change_lang(website_lang);
@@ -111,6 +118,7 @@ window.addEventListener('load', () => {
     //show_what_need_know();
     show_product_info(temp_obj);
     add_dropdown_catalog(website_lang);
+    add_dropdown_tags(website_lang);
 }, false);
 
 window.addEventListener('unload', () => {
@@ -152,3 +160,12 @@ menu_catalog.addEventListener('click', show_catalog, false);
 menu_all_goods.addEventListener('click', show_all_goods, false);
 menu_what_need_know.addEventListener('click', show_what_need_know, false);
 menu_our_address.addEventListener('click', show_our_address, false);
+
+const search_form = document.getElementById('search_input');
+search_form.addEventListener('focus', search_activation, true);
+search_form.addEventListener('blur', search_blur, true);
+search_form.addEventListener('keydown', function (e) {
+    if (e.keyCode === 13) {
+        search();
+    }
+});

@@ -44,6 +44,9 @@ export function change_lang(lang) {
     const menu_tags = document.getElementById('menu_tags');
     menu_tags.innerHTML = WEBSITE_INFO.menu_tags[lang];
 
+    const search_input = document.getElementById('search_input');
+    search_input.placeholder  = WEBSITE_INFO.search_here[lang];
+
     const data_attr_lang = '[data-' + lang + ']';
 
     const change_lang_array = document.querySelectorAll(data_attr_lang);
@@ -57,7 +60,7 @@ export function change_lang(lang) {
 export function change_lang2() {
     const data = document.querySelectorAll('[data-en]');
 
-    console.log(data);
+    //console.log(data);
 
     data.forEach(function (item) {
         const name = item.dataset.en;
