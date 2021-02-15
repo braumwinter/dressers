@@ -45,6 +45,7 @@ ul {
   display: flex;
   width: 100%;
   height: auto;
+  min-height: 1000px;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
@@ -554,7 +555,7 @@ ul {
       -ms-flex-pack: start;
           justify-content: flex-start;
   font-size: 14px;
-  margin: 10px 0;
+  margin: 10px 0 20px 0;
   color: blue;
 }
 
@@ -1386,5 +1387,73 @@ ul {
 .button_back:hover {
   background: #291f1d;
   color: #ffffff;
+}
+
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: auto;
+  margin: 20px 0 0 0;
+  background-color: #8d8d8d;
+  font-size: 1.6rem;
+  color: #ffffff;
+}
+
+.footer_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 0;
+}
+
+.back_to_top {
+  position: fixed;
+  bottom: 30px;
+  right: 40px;
+  z-index: 9999;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 30px;
+  background: #8d8d8d;
+  cursor: pointer;
+  border-radius: 8px;
+  display: none;
+  border: 1px solid #ccccca;
+}
+
+.back_to_top:hover {
+  background: #ccccca;
+}
+
+.back_to_top:hover .back_to_top_img {
+  -webkit-filter: invert(0);
+          filter: invert(0);
+}
+
+.back_to_top_active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.back_to_top_img {
+  width: 25px;
+  height: 20px;
+  -webkit-filter: invert(1);
+          filter: invert(1);
 }
 /*# sourceMappingURL=styles.css.map */

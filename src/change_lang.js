@@ -47,6 +47,9 @@ export function change_lang(lang) {
     const search_input = document.getElementById('search_input');
     search_input.placeholder  = WEBSITE_INFO.search_here[lang];
 
+    const for_questions_call = document.getElementById('for_questions_call');
+    for_questions_call.innerHTML = WEBSITE_INFO.for_questions_call[lang];
+
     const data_attr_lang = '[data-' + lang + ']';
 
     const change_lang_array = document.querySelectorAll(data_attr_lang);

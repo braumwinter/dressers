@@ -41,6 +41,11 @@ import {
     search
 } from './search.js';
 
+import {
+    scroll_button,
+    back_top
+} from './scroll.js';
+
 const temp_obj = {
     name: '1',
     category_name: NAME_DRESSERS.chord,
@@ -116,9 +121,11 @@ window.addEventListener('load', () => {
     //add_dropdown_catalog(website_lang);
     //show_start_page();
     //show_what_need_know();
-    show_product_info(temp_obj);
+    //show_product_info(temp_obj);
     add_dropdown_catalog(website_lang);
     add_dropdown_tags(website_lang);
+
+    show_start_page();
 }, false);
 
 window.addEventListener('unload', () => {
@@ -169,3 +176,8 @@ search_form.addEventListener('keydown', function (e) {
         search();
     }
 });
+
+const go_top_button = document.getElementById('back_to_top');
+
+window.addEventListener('scroll', scroll_button);
+go_top_button.addEventListener('click', back_top);

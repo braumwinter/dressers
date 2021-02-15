@@ -31,6 +31,12 @@ export function fill_info() {
 
     const header_email_address = document.getElementById('header_email_address');
     header_email_address.innerHTML = HEADER_EMAIL;
+
+    const footer_phone = document.getElementById('footer_phone');
+    footer_phone.href = 'tel:' + HEADER_PHONE;
+
+    const footer_phone_number = document.getElementById('footer_phone_number');
+    footer_phone_number.innerHTML = HEADER_PHONE;
 }
 
 export function add_dropdown_catalog(website_lang) {

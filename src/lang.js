@@ -589,6 +589,11 @@ export const WEBSITE_INFO = {
         pl: 'pokaż wszystkie produkty',
         ru: 'показать все товары'
     },
+    for_questions_call: {
+        en: 'for all questions call by phone',
+        pl: 'na wszystkie pytania dzwonić telefonicznie',
+        ru: 'по всем вопросам звоните по телефону'
+    },
 }
 
 /*
