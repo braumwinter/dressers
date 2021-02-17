@@ -62,7 +62,7 @@ export function show_favorites() {
 
     highlight_menu_item('no_light');
 
-    show_pages_links();
+    //show_pages_links();
 
     if ((favorites_dressers === null) || (favorites_dressers === undefined) || (favorites_dressers.length == 0)) {
         main.innerHTML = '';
@@ -179,7 +179,7 @@ export function show_favorites() {
 
 
     main.dataset.page = MAIN_PAGE;
-    const pages_links = document.getElementById('pages_links');
+    //const pages_links = document.getElementById('pages_links');
 }
 
 export function show_start_page() {
@@ -187,6 +187,8 @@ export function show_start_page() {
     const catalog = [];
     const main = document.getElementById('main');
     main.innerHTML = '';
+
+    show_link_main_page();
 
     let catalog_item = [];
 
@@ -211,7 +213,7 @@ export function show_start_page() {
     }
 
     main.dataset.page = MAIN_PAGE;
-    show_pages_links();
+    //show_pages_links();
     highlight_menu_item('menu_main');
     catalog.forEach(function (item) {
         main.appendChild(item);
@@ -223,7 +225,9 @@ export function show_main(event) {
     main.innerHTML = '';
 
     //console.log(main.dataset.page);
-    show_pages_links();
+    //show_pages_links();
+
+    show_link_main_page();
 
     const catalog = [];
     let catalog_item = [];
@@ -249,7 +253,7 @@ export function show_main(event) {
     }
 
     main.dataset.page = MAIN_PAGE;
-    show_pages_links();
+    //show_pages_links();
     highlight_menu_item('menu_main');
     catalog.forEach(function (item) {
         main.appendChild(item);
@@ -262,7 +266,7 @@ export function show_catalog() {
     const main = document.getElementById('main');
     main.innerHTML = '';
     //console.log(main.dataset.page);
-    show_pages_links();
+    //show_pages_links();
 
     let catalog_item = [];
 
@@ -285,6 +289,9 @@ export function show_catalog() {
             }
         }
     }
+
+    show_link_main_page();
+    show_link_catalog_page();
 
     main.dataset.page = CATALOG_PAGE;
     highlight_menu_item('menu_catalog');
@@ -300,7 +307,7 @@ export function show_catalog() {
 export function show_all_goods() {
     const main = document.getElementById('main');
     main.innerHTML = '';
-    show_pages_links();
+    //show_pages_links();
 
     const catalog = [];
 
@@ -313,6 +320,8 @@ export function show_all_goods() {
         }
     }
 
+    show_link_main_page();
+    show_link_all_products_page();
     main.dataset.page = ALL_PRODUCT_PAGE;
     highlight_menu_item('menu_all_goods');
 
@@ -326,7 +335,10 @@ export function show_what_need_know() {
     const main = document.getElementById('main');
     main.innerHTML = '';
     //main.innerHTML = 'show_what_need_know';
-    show_pages_links();
+    //show_pages_links();
+
+    show_link_main_page();
+    show_link_what_know_page();
 
     /* header */
 
@@ -668,7 +680,10 @@ export function show_our_address() {
     const main = document.getElementById('main');
     main.innerHTML = '';
     main.innerHTML = 'our_address';
-    show_pages_links();
+    //show_pages_links();
+
+    show_link_main_page();
+    show_link_our_address_page();
 
     highlight_menu_item('menu_our_address');
 }
@@ -1433,6 +1448,8 @@ export function show_category(name_obj) {
 
     const catalog = [];
 
+    show_link_category_page(name_obj);
+
     for (const key in DRESSERS) {
         const category = DRESSERS[key];
         for (const products in category) {
@@ -1573,4 +1590,226 @@ export function show_tags(name_tag) {
 
         main.appendChild(no_results_div);
     }
+}
+
+export function show_link_main_page() {
+    const main = document.getElementById('main');
+
+    const pages_links = document.getElementById('pages_links');
+    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
+    pages_links.innerHTML = '';
+
+    const arrow_link = document.createElement('a');
+    arrow_link.className = 'arrow_link';
+    arrow_link.innerHTML = ' > ';
+
+    const main_page_link = document.createElement('a');
+    main_page_link.className = 'pages_link'
+    main_page_link.innerHTML = WEBSITE_INFO.main_page[lang];
+    main_page_link.dataset.en = WEBSITE_INFO.main_page[EN_LANG];
+    main_page_link.dataset.pl = WEBSITE_INFO.main_page[PL_LANG];
+    main_page_link.dataset.ru = WEBSITE_INFO.main_page[RU_LANG];
+    main_page_link.onclick = function () {
+        show_main();
+    };
+    pages_links.appendChild(main_page_link);
+    pages_links.appendChild(arrow_link);
+}
+
+export function show_link_catalog_page() {
+    const main = document.getElementById('main');
+
+    const pages_links = document.getElementById('pages_links');
+    const pages_links_arr = document.querySelectorAll('.pages_link');
+    //console.log(pages_links_arr);
+    let is_link = false;
+    for (let index_links = 0; index_links < pages_links_arr.length; index_links++) {
+        if (pages_links_arr[index_links].dataset.en == WEBSITE_INFO.menu_catalog[EN_LANG]) {
+            is_link = true;
+        }
+    }
+
+    //console.log(is_link);
+
+    if (!is_link) {
+        const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
+        //pages_links.innerHTML = '';
+
+        const arrow_link = document.createElement('a');
+        arrow_link.className = 'arrow_link';
+        arrow_link.innerHTML = ' > ';
+
+        const catalog_page_link = document.createElement('a');
+        catalog_page_link.className = 'pages_link'
+        catalog_page_link.innerHTML = WEBSITE_INFO.menu_catalog[lang];
+        catalog_page_link.dataset.en = WEBSITE_INFO.menu_catalog[EN_LANG];
+        catalog_page_link.dataset.pl = WEBSITE_INFO.menu_catalog[PL_LANG];
+        catalog_page_link.dataset.ru = WEBSITE_INFO.menu_catalog[RU_LANG];
+        catalog_page_link.onclick = function () {
+            show_catalog();
+        };
+        pages_links.appendChild(catalog_page_link);
+        pages_links.appendChild(arrow_link);
+    }
+}
+
+export function show_link_all_products_page() {
+    const main = document.getElementById('main');
+
+    const pages_links = document.getElementById('pages_links');
+    const pages_links_arr = document.querySelectorAll('.pages_link');
+    //console.log(pages_links_arr);
+    let is_link = false;
+    for (let index_links = 0; index_links < pages_links_arr.length; index_links++) {
+        if (pages_links_arr[index_links].dataset.en == WEBSITE_INFO.menu_all_goods[EN_LANG]) {
+            is_link = true;
+        }
+    }
+
+    //console.log(is_link);
+
+    if (!is_link) {
+        const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
+        //pages_links.innerHTML = '';
+
+        const arrow_link = document.createElement('a');
+        arrow_link.className = 'arrow_link';
+        arrow_link.innerHTML = ' > ';
+
+        const all_goods_page_link = document.createElement('a');
+        all_goods_page_link.className = 'pages_link'
+        all_goods_page_link.innerHTML = WEBSITE_INFO.menu_all_goods[lang];
+        all_goods_page_link.dataset.en = WEBSITE_INFO.menu_all_goods[EN_LANG];
+        all_goods_page_link.dataset.pl = WEBSITE_INFO.menu_all_goods[PL_LANG];
+        all_goods_page_link.dataset.ru = WEBSITE_INFO.menu_all_goods[RU_LANG];
+        all_goods_page_link.onclick = function () {
+            show_all_goods();
+        };
+        pages_links.appendChild(all_goods_page_link);
+        pages_links.appendChild(arrow_link);
+    }
+}
+
+export function show_link_what_know_page() {
+    const main = document.getElementById('main');
+
+    const pages_links = document.getElementById('pages_links');
+    const pages_links_arr = document.querySelectorAll('.pages_link');
+    //console.log(pages_links_arr);
+    let is_link = false;
+    for (let index_links = 0; index_links < pages_links_arr.length; index_links++) {
+        if (pages_links_arr[index_links].dataset.en == WEBSITE_INFO.menu_what_need_know[EN_LANG]) {
+            is_link = true;
+        }
+    }
+
+    //console.log(is_link);
+
+    if (!is_link) {
+        const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
+        //pages_links.innerHTML = '';
+
+        const arrow_link = document.createElement('a');
+        arrow_link.className = 'arrow_link';
+        arrow_link.innerHTML = ' > ';
+
+        const what_know_page_link = document.createElement('a');
+        what_know_page_link.className = 'pages_link'
+        what_know_page_link.innerHTML = WEBSITE_INFO.menu_what_need_know[lang];
+        what_know_page_link.dataset.en = WEBSITE_INFO.menu_what_need_know[EN_LANG];
+        what_know_page_link.dataset.pl = WEBSITE_INFO.menu_what_need_know[PL_LANG];
+        what_know_page_link.dataset.ru = WEBSITE_INFO.menu_what_need_know[RU_LANG];
+        what_know_page_link.onclick = function () {
+            show_what_need_know();
+        };
+        pages_links.appendChild(what_know_page_link);
+        pages_links.appendChild(arrow_link);
+    }
+}
+
+export function show_link_our_address_page() {
+    const main = document.getElementById('main');
+
+    const pages_links = document.getElementById('pages_links');
+    const pages_links_arr = document.querySelectorAll('.pages_link');
+    //console.log(pages_links_arr);
+    let is_link = false;
+    for (let index_links = 0; index_links < pages_links_arr.length; index_links++) {
+        if (pages_links_arr[index_links].dataset.en == WEBSITE_INFO.menu_our_address[EN_LANG]) {
+            is_link = true;
+        }
+    }
+
+    //console.log(is_link);
+
+    if (!is_link) {
+        const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
+        //pages_links.innerHTML = '';
+
+        const arrow_link = document.createElement('a');
+        arrow_link.className = 'arrow_link';
+        arrow_link.innerHTML = ' > ';
+
+        const our_address_page_link = document.createElement('a');
+        our_address_page_link.className = 'pages_link'
+        our_address_page_link.innerHTML = WEBSITE_INFO.menu_our_address[lang];
+        our_address_page_link.dataset.en = WEBSITE_INFO.menu_our_address[EN_LANG];
+        our_address_page_link.dataset.pl = WEBSITE_INFO.menu_our_address[PL_LANG];
+        our_address_page_link.dataset.ru = WEBSITE_INFO.menu_our_address[RU_LANG];
+        our_address_page_link.onclick = function () {
+            show_our_address();
+        };
+        pages_links.appendChild(our_address_page_link);
+        pages_links.appendChild(arrow_link);
+    }
+}
+
+export function show_link_category_page(name_obj) {
+    const main = document.getElementById('main');
+
+    const pages_links = document.getElementById('pages_links');
+    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
+    pages_links.innerHTML = '';
+
+    const arrow_link = document.createElement('a');
+    arrow_link.className = 'arrow_link';
+    arrow_link.innerHTML = ' > ';
+
+    const main_page_link = document.createElement('a');
+    main_page_link.className = 'pages_link'
+    main_page_link.innerHTML = WEBSITE_INFO.main_page[lang];
+    main_page_link.dataset.en = WEBSITE_INFO.main_page[EN_LANG];
+    main_page_link.dataset.pl = WEBSITE_INFO.main_page[PL_LANG];
+    main_page_link.dataset.ru = WEBSITE_INFO.main_page[RU_LANG];
+    main_page_link.onclick = function () {
+        show_main();
+    };
+    pages_links.appendChild(main_page_link);
+    pages_links.appendChild(arrow_link);
+
+    const catalog_page_link = document.createElement('a');
+    catalog_page_link.className = 'pages_link'
+    catalog_page_link.innerHTML = WEBSITE_INFO.menu_catalog[lang];
+    catalog_page_link.dataset.en = WEBSITE_INFO.menu_catalog[EN_LANG];
+    catalog_page_link.dataset.pl = WEBSITE_INFO.menu_catalog[PL_LANG];
+    catalog_page_link.dataset.ru = WEBSITE_INFO.menu_catalog[RU_LANG];
+    catalog_page_link.onclick = function () {
+        show_catalog();
+    };
+    pages_links.appendChild(catalog_page_link);
+    pages_links.appendChild(arrow_link);
+
+    //name_obj[EN_LANG]
+
+    const category_page_link = document.createElement('a');
+    category_page_link.className = 'pages_link'
+    category_page_link.innerHTML = WEBSITE_INFO.name_obj[lang];
+    category_page_link.dataset.en = WEBSITE_INFO.name_obj[EN_LANG];
+    category_page_link.dataset.pl = WEBSITE_INFO.name_obj[PL_LANG];
+    category_page_link.dataset.ru = WEBSITE_INFO.name_obj[RU_LANG];
+    category_page_link.onclick = function () {
+        show_category(name_obj);
+    };
+    pages_links.appendChild(category_page_link);
+    pages_links.appendChild(arrow_link);
 }
