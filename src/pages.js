@@ -1787,6 +1787,10 @@ export function show_link_category_page(name_obj) {
     pages_links.appendChild(main_page_link);
     pages_links.appendChild(arrow_link);
 
+    const arrow_link_2 = document.createElement('a');
+    arrow_link_2.className = 'arrow_link';
+    arrow_link_2.innerHTML = ' > ';
+
     const catalog_page_link = document.createElement('a');
     catalog_page_link.className = 'pages_link'
     catalog_page_link.innerHTML = WEBSITE_INFO.menu_catalog[lang];
@@ -1797,20 +1801,24 @@ export function show_link_category_page(name_obj) {
         show_catalog();
     };
     pages_links.appendChild(catalog_page_link);
-    pages_links.appendChild(arrow_link);
+    pages_links.appendChild(arrow_link_2);
 
     //name_obj[EN_LANG]
     console.log(name_obj);
 
+    const arrow_link_3 = document.createElement('a');
+    arrow_link_3.className = 'arrow_link';
+    arrow_link_3.innerHTML = ' > ';
+
     const category_page_link = document.createElement('a');
     category_page_link.className = 'pages_link'
-    category_page_link.innerHTML = WEBSITE_INFO.name_obj[lang];
-    category_page_link.dataset.en = WEBSITE_INFO.name_obj[EN_LANG];
-    category_page_link.dataset.pl = WEBSITE_INFO.name_obj[PL_LANG];
-    category_page_link.dataset.ru = WEBSITE_INFO.name_obj[RU_LANG];
+    category_page_link.innerHTML = name_obj[lang];
+    category_page_link.dataset.en = name_obj[EN_LANG];
+    category_page_link.dataset.pl = name_obj[PL_LANG];
+    category_page_link.dataset.ru = name_obj[RU_LANG];
     category_page_link.onclick = function () {
         show_category(name_obj);
     };
     pages_links.appendChild(category_page_link);
-    pages_links.appendChild(arrow_link);
+    pages_links.appendChild(arrow_link_3);
 }
