@@ -1800,6 +1800,7 @@ export function show_link_category_page(name_obj) {
     pages_links.appendChild(arrow_link);
 
     //name_obj[EN_LANG]
+    console.log(name_obj);
 
     const category_page_link = document.createElement('a');
     category_page_link.className = 'pages_link'
