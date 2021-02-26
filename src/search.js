@@ -146,7 +146,7 @@ export function search(event) {
         //console.log('catalog.length');
         main.innerHTML = '';
         catalog.forEach(function (item) {
-            main.appendChild(item);
+            main.append(item);
         });
     } else {
         //console.log('no');
@@ -161,7 +161,7 @@ export function search(event) {
         no_results_header.dataset.en = WEBSITE_INFO.no_results[EN_LANG];
         no_results_header.dataset.pl = WEBSITE_INFO.no_results[PL_LANG];
         no_results_header.dataset.ru = WEBSITE_INFO.no_results[RU_LANG];
-        no_results_div.appendChild(no_results_header);
+        no_results_div.append(no_results_header);
 
         const try_change_request = document.createElement('p');
         try_change_request.className = 'no_results_p';
@@ -169,7 +169,7 @@ export function search(event) {
         try_change_request.dataset.en = WEBSITE_INFO.try_change_request[EN_LANG];
         try_change_request.dataset.pl = WEBSITE_INFO.try_change_request[PL_LANG];
         try_change_request.dataset.ru = WEBSITE_INFO.try_change_request[RU_LANG];
-        no_results_div.appendChild(try_change_request);
+        no_results_div.append(try_change_request);
 
         const check_request_typos = document.createElement('p');
         check_request_typos.className = 'no_results_p';
@@ -177,7 +177,7 @@ export function search(event) {
         check_request_typos.dataset.en = WEBSITE_INFO.check_request_typos[EN_LANG];
         check_request_typos.dataset.pl = WEBSITE_INFO.check_request_typos[PL_LANG];
         check_request_typos.dataset.ru = WEBSITE_INFO.check_request_typos[RU_LANG];
-        no_results_div.appendChild(check_request_typos);
+        no_results_div.append(check_request_typos);
 
         const button_back = document.createElement('button');
         button_back.className = 'button_back';
@@ -188,7 +188,7 @@ export function search(event) {
         button_back.onclick = function () {
             show_main();
         };
-        no_results_div.appendChild(button_back);
+        no_results_div.append(button_back);
 
         const button_all = document.createElement('button');
         button_all.className = 'button_back';
@@ -199,8 +199,8 @@ export function search(event) {
         button_all.onclick = function () {
             show_all_goods();
         };
-        no_results_div.appendChild(button_all);
+        no_results_div.append(button_all);
 
-        main.appendChild(no_results_div);
+        main.append(no_results_div);
     }
 }

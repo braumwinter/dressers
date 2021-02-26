@@ -594,6 +594,11 @@ export const WEBSITE_INFO = {
         pl: 'na wszystkie pytania dzwonić telefonicznie',
         ru: 'по всем вопросам звоните по телефону'
     },
+    open_in_new_window: {
+        en: 'open in a new window',
+        pl: 'otwórz w nowym oknie',
+        ru: 'открыть в новом окне'
+    },
 }
 
 /*

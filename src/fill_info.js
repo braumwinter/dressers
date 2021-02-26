@@ -83,7 +83,7 @@ export function add_dropdown_catalog(website_lang) {
             show_category(item[0]);
         }
 
-        dropdown_catalog.appendChild(dropdown_item);
+        dropdown_catalog.append(dropdown_item);
     });
 }
 
@@ -104,6 +104,6 @@ export function add_dropdown_tags(website_lang) {
             show_tags(tag);
         }
 
-        dropdown_tags.appendChild(dropdown_item);
+        dropdown_tags.append(dropdown_item);
     }
 }
