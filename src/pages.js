@@ -450,9 +450,7 @@ export function show_what_need_know() {
 
     const color_div = document.createElement('div');
     color_div.className = 'know_div_color';
-    color_div.onclick = function () {
-        show_image(event);
-    }
+    color_div.addEventListener('click', show_image, false);
 
     for (const key in BODY_COLOR) {
         const card_info = BODY_COLOR[key];
@@ -486,10 +484,6 @@ export function show_what_need_know() {
         color_img_text.dataset.pl = card_info.pl;
         color_img_text.dataset.ru = card_info.ru;
         color_card.append(color_img_text);
-
-        /*color_card.onclick = function () {
-            show_image(color_img.src);
-        }*/
 
         color_div.append(color_card);
     }
@@ -735,7 +729,7 @@ export function show_pages_links() {
 export function show_products(array) {
     const main = document.getElementById('main');
     main.innerHTML = '';
-    show_pages_links();
+    //show_pages_links();
 
     const catalog = [];
 
@@ -852,6 +846,7 @@ export function show_product_info(obj) {
 
     const info_images_div = document.createElement('div');
     info_images_div.className = 'info_images_div';
+    info_images_div.addEventListener('click', show_image, false);
 
     const images_array_product = obj.imgs;
 
@@ -863,26 +858,28 @@ export function show_product_info(obj) {
         small_image_product.className = 'small_image_product';
         small_image_product.src = path_img_product + item;
         small_image_product.alt = obj.category_name[EN_LANG];
-
-        /* функция клика чтобы картинки были большие */
+        small_image_product.dataset.en = obj.category_name.en;
+        small_image_product.dataset.pl = obj.category_name.pl;
+        small_image_product.dataset.ru = obj.category_name.ru;
 
         small_image_product_div.append(small_image_product);
         info_images_div.append(small_image_product_div);
     });
 
     const images_array_product_body = obj.body_color;
-    //console.log(images_array_product_body);
 
     images_array_product_body.forEach(function (item) {
+        console.log(item);
         const small_image_product_div = document.createElement('div');
         small_image_product_div.className = 'small_image_product_div';
 
         const small_image_product = document.createElement('img');
         small_image_product.className = 'small_image_product';
         small_image_product.src = path_img + item.img;
-        small_image_product.alt = obj.category_name[EN_LANG];
-
-        /* функция клика чтобы картинки были большие */
+        small_image_product.alt = item[EN_LANG];
+        small_image_product.dataset.en = item.en;
+        small_image_product.dataset.pl = item.pl;
+        small_image_product.dataset.ru = item.ru;
 
         small_image_product_div.append(small_image_product);
         info_images_div.append(small_image_product_div);
@@ -892,15 +889,17 @@ export function show_product_info(obj) {
 
     images_array_product_facade.forEach(function (item) {
         if (!(images_array_product_body.includes(item))) {
+            console.log(item);
             const small_image_product_div = document.createElement('div');
             small_image_product_div.className = 'small_image_product_div';
 
             const small_image_product = document.createElement('img');
             small_image_product.className = 'small_image_product';
             small_image_product.src = path_img + item.img;
-            small_image_product.alt = obj.category_name[EN_LANG];
-
-            /* функция клика чтобы картинки были большие */
+            small_image_product.alt = item[EN_LANG];
+            small_image_product.dataset.en = item.en;
+            small_image_product.dataset.pl = item.pl;
+            small_image_product.dataset.ru = item.ru;
 
             small_image_product_div.append(small_image_product);
             info_images_div.append(small_image_product_div);
@@ -1011,7 +1010,25 @@ export function show_product_info(obj) {
 
     const short_info_first_cost = document.createElement('h3');
     short_info_first_cost.className = 'short_info_cost';
-    short_info_first_cost.innerHTML = obj.roller_guides + ' ' + CURRENCY_UNIT;
+
+    const discount_str = obj.discount.trim();
+    const sale_str = obj.sale.trim();
+
+    console.log(discount_str, sale_str);
+
+    if ((discount_str.length !== 0) || (sale_str.length !== 0)) {
+        const short_info_first_cost_old = document.createElement('span');
+        short_info_first_cost_old.className = 'strikethrough_text';
+        short_info_first_cost_old.innerHTML = obj.roller_guides + ' ' + CURRENCY_UNIT;
+        short_info_first_cost.append(short_info_first_cost_old);
+
+        const short_info_first_cost_new = document.createElement('span');
+        short_info_first_cost_new.innerHTML = obj.new_roller_guides + ' ' + CURRENCY_UNIT;
+        short_info_first_cost.append(short_info_first_cost_new);
+    } else {
+        short_info_first_cost.innerHTML = obj.roller_guides + ' ' + CURRENCY_UNIT;
+    }
+
     short_info_first_cost_div.append(short_info_first_cost);
 
     short_info_text.append(short_info_first_cost_div);
@@ -1029,7 +1046,20 @@ export function show_product_info(obj) {
 
     const short_info_second_cost = document.createElement('h3');
     short_info_second_cost.className = 'short_info_cost';
-    short_info_second_cost.innerHTML = obj.ball_guides + ' ' + CURRENCY_UNIT;
+
+    if ((discount_str.length !== 0) || (sale_str.length !== 0)) {
+        const short_info_second_cost_old = document.createElement('span');
+        short_info_second_cost_old.className = 'strikethrough_text';
+        short_info_second_cost_old.innerHTML = obj.ball_guides + ' ' + CURRENCY_UNIT;
+        short_info_second_cost.append(short_info_second_cost_old);
+
+        const short_info_second_cost_new = document.createElement('span');
+        short_info_second_cost_new.innerHTML = obj.new_ball_guides + ' ' + CURRENCY_UNIT;
+        short_info_second_cost.append(short_info_second_cost_new);
+    } else {
+        short_info_second_cost.innerHTML = obj.ball_guides + ' ' + CURRENCY_UNIT;
+    }
+
     short_info_second_cost_div.append(short_info_second_cost);
 
     short_info_text.append(short_info_second_cost_div);
@@ -1502,7 +1532,7 @@ export function check_favorites(array) {
 }
 
 export function show_category(name_obj) {
-    //console.log(name_obj);
+    console.log(name_obj);
 
     const main = document.getElementById('main');
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();

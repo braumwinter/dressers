@@ -9,7 +9,9 @@ import {
 
 import {
     show_products,
-    show_product_info
+    show_product_info,
+    show_category,
+    show_link_category_page
 } from './pages.js';
 
 const path_img = './assets/product/';
@@ -49,7 +51,47 @@ export function product_card_create(obj) {
 
     const card_cost = document.createElement('p');
     card_cost.className = 'card_cost';
-    card_cost.innerHTML = obj.roller_guides + ' ' + CURRENCY_UNIT + '  -  ' + obj.ball_guides + ' ' + CURRENCY_UNIT;
+
+    const discount_str = obj.discount.trim();
+    const sale_str = obj.sale.trim();
+    let first_cost;
+    let second_cost;
+
+    if (discount_str.length !== 0) {
+        const discount = document.createElement('div');
+        discount.className = 'discount';
+
+        /*const discount_span_1 = document.createElement('span');
+        discount.append(discount_span_1);
+
+        const discount_span_2 = document.createElement('span');
+        discount.append(discount_span_2);*/
+
+        const discount_span_3 = document.createElement('span');
+        discount_span_3.innerHTML = '%';
+        discount.append(discount_span_3);
+
+        card_border.append(discount);
+
+        first_cost = obj.new_roller_guides;
+        second_cost = obj.new_ball_guides;
+    } else if (sale_str.length !== 0) {
+        const sale = document.createElement('div');
+        sale.className = 'sale';
+        sale.innerHTML = WEBSITE_INFO.sale[lang];
+        sale.dataset.en = WEBSITE_INFO.sale[EN_LANG];
+        sale.dataset.pl = WEBSITE_INFO.sale[PL_LANG];
+        sale.dataset.ru = WEBSITE_INFO.sale[RU_LANG];
+        card_border.append(sale);
+
+        first_cost = obj.new_roller_guides;
+        second_cost = obj.new_ball_guides;
+    } else {
+        first_cost = obj.roller_guides;
+        second_cost = obj.ball_guides;
+    }
+
+    card_cost.innerHTML = first_cost + ' ' + CURRENCY_UNIT + '  -  ' + second_cost + ' ' + CURRENCY_UNIT;
     card_border.append(card_cost);
 
     const card_button = document.createElement('button');
@@ -58,7 +100,7 @@ export function product_card_create(obj) {
     card_button.dataset.en = WEBSITE_INFO.select[EN_LANG];
     card_button.dataset.pl = WEBSITE_INFO.select[PL_LANG];
     card_button.dataset.ru = WEBSITE_INFO.select[RU_LANG];
-    card_button.onclick = function(){
+    card_button.onclick = function () {
         show_product_info(obj);
     }
     card_border.append(card_button);
@@ -140,18 +182,20 @@ export function catalog_card_create(array) {
     catalog_card_button.dataset.en = WEBSITE_INFO.go_to_catalog[EN_LANG];
     catalog_card_button.dataset.pl = WEBSITE_INFO.go_to_catalog[PL_LANG];
     catalog_card_button.dataset.ru = WEBSITE_INFO.go_to_catalog[RU_LANG];
-    catalog_card_button.onclick = function(){
+    catalog_card_button.onclick = function () {
+        //show_category(array[0])
+        show_link_category_page(array[0]);
         show_products(array[0]);
     }
     catalog_card_border.append(catalog_card_button);
 
-    array.forEach(function (item, index, array) {
+    /*array.forEach(function (item, index, array) {
         // [0] - {en:.., pl:.., ru:..} названия
         // [1] - [0, 1] картинки
         // [2] - number цена
         // [3] - [0, 1, 2] размеры
         // [4] - number количество
-    });
+    });*/
 
     return catalog_card_border;
 }

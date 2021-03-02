@@ -599,6 +599,16 @@ export const WEBSITE_INFO = {
         pl: 'otwórz w nowym oknie',
         ru: 'открыть в новом окне'
     },
+    discount: {
+        en: 'discount',
+        pl: 'zniżka',
+        ru: 'скидка'
+    },
+    sale: {
+        en: 'sale',
+        pl: 'sprzedaż',
+        ru: 'распродажа'
+    },
 }
 
 /*
