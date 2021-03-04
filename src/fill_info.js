@@ -69,9 +69,10 @@ export function add_dropdown_catalog(website_lang) {
 
     catalog_list.forEach(function (item) {
         //console.log(item);
+        const NBS = '&nbsp;'
 
-        const str_cost = ' - ' + item[1] + ' ' + CURRENCY_UNIT + ' (';
-        const str_size = ': ' + item[2][0] + 'x' + item[2][1] + 'x' + item[2][2];
+        const str_cost = NBS + '-' + NBS + item[1] + NBS + CURRENCY_UNIT + ' (';
+        const str_size = ':' + NBS + item[2][0] + 'x' + item[2][1] + 'x' + item[2][2];
 
         const dropdown_item = document.createElement('li');
         dropdown_item.className = 'dropdown_menu_item';
