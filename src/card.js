@@ -20,7 +20,6 @@ const PL_LANG = 'pl';
 const RU_LANG = 'ru';
 
 export function product_card_create(obj) {
-    //console.log('product_card_create ', obj);
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
     const card = document.createElement('div');
@@ -31,7 +30,6 @@ export function product_card_create(obj) {
 
     const img_border = document.createElement('div');
     img_border.className = 'card_img_border';
-    //img_border.style.backgroundImage = `url(${path_img + obj.card_img[1]})`;
     card_border.append(img_border);
 
     const card_img_first = document.createElement('img');
@@ -63,12 +61,6 @@ export function product_card_create(obj) {
     if (discount_str.length !== 0) {
         const discount = document.createElement('div');
         discount.className = 'discount';
-
-        /*const discount_span_1 = document.createElement('span');
-        discount.append(discount_span_1);
-
-        const discount_span_2 = document.createElement('span');
-        discount.append(discount_span_2);*/
 
         const discount_span_3 = document.createElement('span');
         discount_span_3.innerHTML = '%';
@@ -110,13 +102,10 @@ export function product_card_create(obj) {
 
     card.append(card_border);
 
-    //return card_border;
-
     return card;
 }
 
 export function catalog_card_create(array) {
-    //console.log(array);
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
     const card = document.createElement('div');
@@ -141,7 +130,6 @@ export function catalog_card_create(array) {
 
     const catalog_card_first_info = document.createElement('div');
     catalog_card_first_info.className = 'catalog_first_info';
-    //catalog_card_border.append(catalog_card_first_info);
 
     const catalog_card_name = document.createElement('p');
     catalog_card_name.className = 'catalog_card_name';
@@ -150,11 +138,6 @@ export function catalog_card_create(array) {
     catalog_card_name.dataset.pl = array[0][PL_LANG];
     catalog_card_name.dataset.ru = array[0][RU_LANG];
     catalog_card_first_info.append(catalog_card_name);
-
-    /*const catalog_card_hyphen = document.createElement('p');
-    catalog_card_hyphen.className = 'catalog_card_hyphen';
-    catalog_card_hyphen.innerHTML = '  - ';
-    catalog_card_first_info.append(catalog_card_hyphen);*/
 
     const catalog_card_cost = document.createElement('p');
     catalog_card_cost.className = 'catalog_card_cost';
@@ -193,23 +176,12 @@ export function catalog_card_create(array) {
     catalog_card_button.dataset.pl = WEBSITE_INFO.go_to_catalog[PL_LANG];
     catalog_card_button.dataset.ru = WEBSITE_INFO.go_to_catalog[RU_LANG];
     catalog_card_button.onclick = function () {
-        //show_category(array[0])
         show_link_category_page(array[0]);
         show_products(array[0]);
     }
     catalog_card_border.append(catalog_card_button);
 
-    /*array.forEach(function (item, index, array) {
-        // [0] - {en:.., pl:.., ru:..} названия
-        // [1] - [0, 1] картинки
-        // [2] - number цена
-        // [3] - [0, 1, 2] размеры
-        // [4] - number количество
-    });*/
-
     card.append(catalog_card_border);
-
-    //return catalog_card_border;
 
     return card;
 }

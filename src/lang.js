@@ -11,12 +11,6 @@ export const NAME_DRESSERS = {
     }
 }
 
-/*
-en: '',
-        pl: '',
-        ru: ''
-*/
-
 export const BODY_COLOR = {
     sonoma_oak: {
         en: 'Sonoma oak',
@@ -61,14 +55,6 @@ export const BODY_MATERIAL = {
         ru: 'ЛДСП',
     },
 };
-
-
-/*
-en: '',
-        pl: '',
-        ru: ''
-*/
-
 
 export const TAGS = {
     two_doors: {
@@ -173,12 +159,6 @@ export const TAGS = {
     },
 }
 
-/*
-en: '',
-        pl: '',
-        ru: ''
-*/
-
 /* телефон для связи */
 export const HEADER_PHONE = '+375291234567';
 
@@ -240,8 +220,6 @@ export const WARRANTY_EN = '3 years warranty!';
 export const WARRANTY_PL = '3 lata gwarancji!';
 /* гарантия на русском */
 export const WARRANTY_RU = 'Гарантия 3 года!';
-
-
 
 export const WEBSITE_INFO = {
     to_receive_orders: {
@@ -610,15 +588,3 @@ export const WEBSITE_INFO = {
         ru: 'распродажа'
     },
 }
-
-/*
-en: '',
-        pl: '',
-        ru: ''
-
-        b: {
-        en: '',
-        pl: '',
-        ru: ''
-    },
-*/

@@ -49,14 +49,11 @@ export function add_dropdown_catalog(website_lang) {
     for (const key in DRESSERS) {
         const category = DRESSERS[key];
         for (const product in category) {
-            //console.log(product);
             if (product == 0) {
                 catalog_item.push(category[product]);
-                //name = category[product];
             }
 
             if (product == 1) {
-                //catalog_item.push(category[product].card_img);
                 catalog_item.push(category[product].roller_guides);
                 catalog_item.push([category[product].width, category[product].height, category[product].depth]);
                 catalog_list.push(catalog_item);
@@ -65,10 +62,7 @@ export function add_dropdown_catalog(website_lang) {
         }
     }
 
-    //console.log(catalog_list);
-
     catalog_list.forEach(function (item) {
-        //console.log(item);
         const NBS = '&nbsp;'
 
         const str_cost = NBS + '-' + NBS + item[1] + NBS + CURRENCY_UNIT + ' (';

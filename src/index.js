@@ -46,41 +46,13 @@ import {
     back_top
 } from './scroll.js';
 
-const temp_obj = {
-    name: '1',
-    category_name: NAME_DRESSERS.chord,
-    card_img: ['chord1_small_1.jpg', 'chord1_small_2.jpg'],
-    imgs: ['chord1_1.jpg', 'chord1_2.jpg', 'chord1_3.jpg'],
-    roller_guides: 225.00,
-    ball_guides: 274.00,
-    body_color: [BODY_COLOR.sonoma_oak, BODY_COLOR.alder],
-    facade_color: [BODY_COLOR.sonoma_oak],
-    size: '',
-    width: '100',
-    height: '90',
-    depth: '45',
-    weight: '54',
-    build_option: [TAGS.two_shelves, TAGS.eight_shuffles],
-    body_material: [BODY_MATERIAL.chipboard],
-    facade_material: [BODY_MATERIAL.chipboard],
-    equipment: '',
-    additional_information: '',
-    category: '',
-    vendor_code: '',
-    tags: [TAGS.two_shelves, TAGS.eight_shuffles, TAGS.one_hundred_twenty, TAGS.with_shelf],
-
-};
-
 const EN_LANG = 'en';
 const PL_LANG = 'pl';
 const RU_LANG = 'ru';
 
-//console.log(DRESSERS);
-
 const user_lang = navigator.language.slice(0, 2) || navigator.userLanguage.slice(0, 2);
 let website_lang;
 const save_user_lang = localStorage.getItem('save_user_lang');
-//console.log(save_user_lang);
 const show_lang = document.getElementById('show_language');
 
 const last_state = localStorage.getItem('last_state');
@@ -105,7 +77,6 @@ function define_language(lang) {
 
     show_lang.innerHTML = website_lang;
     show_lang.dataset.lang = website_lang;
-    //show_lang.dataset[lang] = website_lang;
 }
 
 if ((save_user_lang === null) || (save_user_lang === undefined)) {
@@ -113,15 +84,10 @@ if ((save_user_lang === null) || (save_user_lang === undefined)) {
 } else {
     define_language(save_user_lang);
 }
-//console.log(website_lang);
 
 window.addEventListener('load', () => {
     change_lang(website_lang);
     fill_info();
-    //add_dropdown_catalog(website_lang);
-    //show_start_page();
-    //show_what_need_know();
-    //show_product_info(temp_obj);
     add_dropdown_catalog(website_lang);
     add_dropdown_tags(website_lang);
 
@@ -132,16 +98,11 @@ window.addEventListener('unload', () => {
     const save_lang = document.getElementById('show_language');
     if ((save_lang.dataset.lang === null) || (save_lang.dataset.lang === undefined)) {
         localStorage.setItem('save_user_lang', save_lang.innerHTML.toLocaleLowerCase());
-        //console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
     } else {
         localStorage.setItem('save_user_lang', save_lang.dataset.lang.toLocaleLowerCase());
-        //console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww');
     }
 
 }, false);
-
-//console.log(show_lang.innerHTML.toLocaleLowerCase());
-//console.log(show_lang.dataset.lang);
 
 const language_item_en = document.getElementById('language_item_en');
 const language_item_pl = document.getElementById('language_item_pl');
@@ -153,8 +114,6 @@ language_item_ru.addEventListener('click', choose_lang, false);
 
 const favorites = document.getElementById('favorites');
 favorites.addEventListener('click', show_favorites, false);
-
-//show_catalog();
 
 const menu_main = document.getElementById('menu_main');
 const menu_catalog = document.getElementById('menu_catalog');

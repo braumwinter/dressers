@@ -47,7 +47,6 @@ export function search(event) {
     }
 
     const catalog = [];
-    console.log(search_input_value);
 
     for (const key in DRESSERS) {
         const category = DRESSERS[key];
@@ -57,33 +56,23 @@ export function search(event) {
 
                 for (const value in product_info) {
                     if ((value != 'card_img') && (value != 'imgs')) {
-                        //console.log('VALUE', value);
 
                         const product_field = product_info[value];
-                        //console.log(product_field);
                         const field_type = toString.call(product_field);
 
-                        //console.log(field_type);
-
                         if (field_type == '[object Number]') {
-                            //console.log('number/string');
                             if (product_field == search_input_value) {
-                                //console.log('YES');
                                 catalog.push(product_card_create(product_info));
                                 continue;
                             }
                         } else if (field_type == '[object String]') {
-                            //console.log('number/string');
                             if (product_field.toLocaleLowerCase() == search_input_value.toLocaleLowerCase()) {
-                                //console.log('YES');
                                 catalog.push(product_card_create(product_info));
                                 continue;
                             }
                         } else if ((field_type == '[object Object]')) {
-                            //console.log('object');
                             let is_found = false;
                             for (let key in product_field) {
-                                //console.log(product_field[key]);
                                 if (product_field[key].toLocaleLowerCase() == search_input_value.toLocaleLowerCase()) {
                                     is_found = true;
                                 }
@@ -95,13 +84,9 @@ export function search(event) {
                             }
 
                         } else if ((field_type == '[object Array]')) {
-                            //console.log('array');
-
                             for (let index_field = 0; index_field < product_field.length; index_field++) {
                                 let is_found = false;
                                 for (let key in product_field[index_field]) {
-                                    //console.log(value);
-                                    //console.log(product_field[index_field][key]);
                                     if (product_field[index_field][key].toLocaleLowerCase() == search_input_value.toLocaleLowerCase()) {
                                         is_found = true;
                                     }
@@ -109,47 +94,22 @@ export function search(event) {
 
                                 if (is_found) {
                                     catalog.push(product_card_create(product_info));
-                                    //catalog.push(product_info);
                                     continue;
                                 }
                             }
                         }
                     }
                 }
-                //console.log(product_info);
-                //console.log(Object.values(product_info));
-
-                /* простые
-                console.log(product_info.name);
-                console.log(product_info.roller_guides);
-                console.log(product_info.ball_guides);
-                console.log(product_info.width);
-                console.log(product_info.height);
-                console.log(product_info.depth);
-                console.log(product_info.weight); */
-
-                /* сложные
-                console.log(product_info.category_name);
-                console.log(product_info.body_color);
-                console.log(product_info.facade_color);
-                console.log(product_info.build_option);
-                console.log(product_info.body_material);
-                console.log(product_info.facade_material);
-                console.log(product_info.tags); */
             }
         }
     }
 
-    //console.log(catalog);
-
     if (catalog.length) {
-        //console.log('catalog.length');
         main.innerHTML = '';
         catalog.forEach(function (item) {
             main.append(item);
         });
     } else {
-        //console.log('no');
         main.innerHTML = '';
 
         const no_results_div = document.createElement('div');

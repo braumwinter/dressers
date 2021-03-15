@@ -65,14 +65,3 @@ export function change_lang(lang) {
         item.innerHTML = name;
     });
 }
-
-export function change_lang2() {
-    const data = document.querySelectorAll('[data-en]');
-
-    //console.log(data);
-
-    data.forEach(function (item) {
-        const name = item.dataset.en;
-        item.innerHTML = name;
-    });
-}

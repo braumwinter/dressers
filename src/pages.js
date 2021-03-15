@@ -33,10 +33,6 @@ import {
     catalog_card_create
 } from './card.js';
 
-import {
-    change_lang2
-} from './change_lang.js';
-
 const path_img = './assets/img/';
 const path_img_product = './assets/product/';
 
@@ -50,7 +46,6 @@ const RU_LANG = 'ru';
 
 export function highlight_menu_item(menu_item_id) {
     const menu_items = document.querySelectorAll('.menu_item');
-    //console.log(menu_items);
 
     menu_items.forEach(function (item) {
         if (item.id == menu_item_id) {
@@ -61,15 +56,12 @@ export function highlight_menu_item(menu_item_id) {
     });
 }
 
-
 export function show_favorites() {
     const favorites_dressers = localStorage.getItem('favorites_dressers');
-    const main = document.getElementById('main');
+
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
-    highlight_menu_item('no_light');
-
-    //show_pages_links();
+    const main = document.getElementById('main');
 
     if ((favorites_dressers === null) || (favorites_dressers === undefined) || (favorites_dressers.length == 0)) {
         main.innerHTML = '';
@@ -89,7 +81,6 @@ export function show_favorites() {
     const info_structure = [];
 
     if ((favorites_dressers === null) || (favorites_dressers === null)) {
-        //console.log(is_found);
         return is_found;
     }
 
@@ -103,8 +94,6 @@ export function show_favorites() {
         info_structure.push(info_arr[i + 3]);
     }
 
-    //console.log(info_structure);
-
     const catalog = [];
 
     for (const key in DRESSERS) {
@@ -112,35 +101,27 @@ export function show_favorites() {
         for (const product in category) {
             if (product != 0) {
                 const product_info = category[product];
-                //console.log(product_info);
                 for (let i = 0; i < info_structure.length; i = i + 2) {
                     let is_first_equal = false;
                     let is_second_equal = false;
                     let is_third_equal = false;
                     let is_fourth_equal = false;
 
-                    //console.log(info_structure[i][EN_LANG], product_info.category_name[EN_LANG]);
                     if (info_structure[i][EN_LANG] == product_info.category_name[EN_LANG]) {
-                        //console.log('yes');
                         is_first_equal = true;
                     }
                     if (info_structure[i][PL_LANG] == product_info.category_name[PL_LANG]) {
-                        //console.log('yes');
                         is_second_equal = true;
                     }
                     if (info_structure[i][RU_LANG] == product_info.category_name[RU_LANG]) {
-                        //console.log('yes');
                         is_third_equal = true;
                     }
 
-                    //console.log(info_structure[i][EN_LANG], product_info.category_name[EN_LANG]);
                     if (info_structure[i + 1] == product_info.name) {
-                        //console.log('yes');
                         is_fourth_equal = true;
                     }
 
                     if (is_first_equal && is_second_equal && is_third_equal && is_fourth_equal) {
-                        //console.log('yes');
                         catalog.push(product_card_create(category[product]));
                     }
                 }
@@ -150,6 +131,7 @@ export function show_favorites() {
     }
 
     main.innerHTML = '';
+
     catalog.forEach(function (item) {
         main.append(item);
     });
@@ -179,33 +161,29 @@ export function show_favorites() {
             no_chosen_one.dataset.ru = WEBSITE_INFO.no_chosen_one[RU_LANG];
             main.append(no_chosen_one);
         }
-
     };
+
     remove_everything_favorites_div.append(remove_everything_favorites_button);
     main.append(remove_everything_favorites_div);
 
-
-    main.dataset.page = MAIN_PAGE;
-    //const pages_links = document.getElementById('pages_links');
+    highlight_menu_item('no_light');
 }
 
 export function show_start_page() {
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
-    const catalog = [];
+
     const main = document.getElementById('main');
     main.innerHTML = '';
 
-    show_link_main_page();
+    const catalog = [];
 
     let catalog_item = [];
 
     for (const key in DRESSERS) {
         const category = DRESSERS[key];
         for (const product in category) {
-            //console.log(product);
             if (product == 0) {
                 catalog_item.push(category[product]);
-                //name = category[product];
             }
 
             if (product == 1) {
@@ -219,8 +197,7 @@ export function show_start_page() {
         }
     }
 
-    main.dataset.page = MAIN_PAGE;
-    //show_pages_links();
+    show_link_main_page();
     highlight_menu_item('menu_main');
     catalog.forEach(function (item) {
         main.append(item);
@@ -231,21 +208,14 @@ export function show_main(event) {
     const main = document.getElementById('main');
     main.innerHTML = '';
 
-    //console.log(main.dataset.page);
-    //show_pages_links();
-
-    show_link_main_page();
-
     const catalog = [];
     let catalog_item = [];
 
     for (const key in DRESSERS) {
         const category = DRESSERS[key];
         for (const product in category) {
-            //console.log(product);
             if (product == 0) {
                 catalog_item.push(category[product]);
-                //name = category[product];
             }
 
             if (product == 1) {
@@ -259,8 +229,7 @@ export function show_main(event) {
         }
     }
 
-    main.dataset.page = MAIN_PAGE;
-    //show_pages_links();
+    show_link_main_page();
     highlight_menu_item('menu_main');
     catalog.forEach(function (item) {
         main.append(item);
@@ -269,21 +238,18 @@ export function show_main(event) {
 
 export function show_catalog() {
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
-    const catalog = [];
+
     const main = document.getElementById('main');
     main.innerHTML = '';
-    //console.log(main.dataset.page);
-    //show_pages_links();
 
+    const catalog = [];
     let catalog_item = [];
 
     for (const key in DRESSERS) {
         const category = DRESSERS[key];
         for (const product in category) {
-            //console.log(product);
             if (product == 0) {
                 catalog_item.push(category[product]);
-                //name = category[product];
             }
 
             if (product == 1) {
@@ -300,21 +266,16 @@ export function show_catalog() {
     show_link_main_page();
     show_link_catalog_page();
 
-    main.dataset.page = CATALOG_PAGE;
     highlight_menu_item('menu_catalog');
 
     catalog.forEach(function (item) {
         main.append(item);
     });
-
-    //change_lang2();
-    //catalog_card_create(catalog);
 }
 
 export function show_all_goods() {
     const main = document.getElementById('main');
     main.innerHTML = '';
-    //show_pages_links();
 
     const catalog = [];
 
@@ -329,7 +290,7 @@ export function show_all_goods() {
 
     show_link_main_page();
     show_link_all_products_page();
-    main.dataset.page = ALL_PRODUCT_PAGE;
+
     highlight_menu_item('menu_all_goods');
 
     catalog.forEach(function (item) {
@@ -341,21 +302,6 @@ export function show_what_need_know() {
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
     const main = document.getElementById('main');
     main.innerHTML = '';
-    //main.innerHTML = 'show_what_need_know';
-    //show_pages_links();
-
-    show_link_main_page();
-    show_link_what_know_page();
-
-    /* header */
-
-    /*const page_header = document.createElement('h3');
-    page_header.className = 'page_header';
-    page_header.innerHTML = WEBSITE_INFO.what_you_need_know[lang];
-    page_header.dataset.en = WEBSITE_INFO.what_you_need_know[EN_LANG];
-    page_header.dataset.pl = WEBSITE_INFO.what_you_need_know[PL_LANG];
-    page_header.dataset.ru = WEBSITE_INFO.what_you_need_know[RU_LANG];
-    main.append(page_header);*/
 
     /* delivery */
     const delivery_header = document.createElement('p');
@@ -446,7 +392,6 @@ export function show_what_need_know() {
     main.append(delivery_div);
 
     /* color */
-
     const color_header = document.createElement('p');
     color_header.className = 'know_header';
     color_header.innerHTML = WEBSITE_INFO.chipboard_colors[lang];
@@ -498,7 +443,6 @@ export function show_what_need_know() {
     main.append(color_div);
 
     /* equipment */
-
     const equipment_header = document.createElement('h3');
     equipment_header.className = 'know_header';
     equipment_header.innerHTML = WEBSITE_INFO.equipment[lang];
@@ -579,9 +523,6 @@ export function show_what_need_know() {
 
     main.append(equipment_ball_div);
 
-    /*const equipment_ball_div_text = document.createElement('div');
-    equipment_ball_div_text.className = 'equipment_div_text';*/
-
     const equipment_ball_text_p_center = document.createElement('p');
     equipment_ball_text_p_center.className = 'equipment_div_text_center';
     equipment_ball_text_p_center.innerHTML = WEBSITE_INFO.paragraph_5[lang];
@@ -648,7 +589,6 @@ export function show_what_need_know() {
     main.append(equipment_ball_text);
 
     /*  */
-
     const know_additional_div = document.createElement('div');
     know_additional_div.className = 'know_additional_div';
 
@@ -680,6 +620,8 @@ export function show_what_need_know() {
 
     main.append(know_additional_div);
 
+    show_link_main_page();
+    show_link_what_know_page();
     highlight_menu_item('menu_what_need_know');
 }
 
@@ -687,8 +629,6 @@ export function show_our_address() {
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
     const main = document.getElementById('main');
     main.innerHTML = '';
-    //main.innerHTML = 'our_address';
-    //show_pages_links();
 
     const our_address_div = document.createElement('div');
     our_address_div.className = 'our_address_div';
@@ -747,7 +687,6 @@ export function show_our_address() {
     our_address_span_tel.dataset.ru = WEBSITE_INFO.phone_ordering_inquiries[RU_LANG];
     our_address_p.append(our_address_span_tel);
 
-
     const our_address_tel = document.createElement('a');
     our_address_tel.href = 'tel:+' + HEADER_PHONE;
     our_address_tel.innerHTML = HEADER_PHONE;
@@ -762,48 +701,9 @@ export function show_our_address() {
     highlight_menu_item('menu_our_address');
 }
 
-export function show_pages_links() {
-    const main = document.getElementById('main');
-    const data_page = main.dataset.page;
-
-    const pages_links = document.getElementById('pages_links');
-    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
-
-    const arrow_link = document.createElement('a');
-    arrow_link.className = 'arrow_link';
-    arrow_link.innerHTML = ' > ';
-
-    switch (data_page) {
-        case MAIN_PAGE: {
-            //console.log(MAIN_PAGE);
-            const main_page_link = document.createElement('a');
-            main_page_link.className = 'pages_link'
-            main_page_link.innerHTML = WEBSITE_INFO.main_page[lang];
-            main_page_link.onclick = function () {
-                show_main();
-            };
-            pages_links.append(main_page_link);
-            pages_links.append(arrow_link);
-            break;
-        };
-    case CATALOG_PAGE: {
-        //console.log(CATALOG_PAGE);
-        break;
-    };
-    case ALL_PRODUCT_PAGE: {
-        //console.log(ALL_PRODUCT_PAGE);
-        break;
-    };
-    default: {
-        //console.log('пиши функцию!!!!');
-    }
-    }
-}
-
 export function show_products(array) {
     const main = document.getElementById('main');
     main.innerHTML = '';
-    //show_pages_links();
 
     const catalog = [];
 
@@ -818,7 +718,6 @@ export function show_products(array) {
         }
     }
 
-    main.dataset.page = ALL_PRODUCT_PAGE;
     highlight_menu_item('menu_all_goods');
 
     catalog.forEach(function (item) {
@@ -829,20 +728,15 @@ export function show_products(array) {
 export function show_image(event) {
     const current_target = event.currentTarget;
     const target = event.target;
-    //console.log(current_target);
-    //console.log(target.tagName);
 
     if (target.tagName == 'IMG') {
         const main = document.getElementById('main');
         const body = document.body;
         const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
-        //console.log(path);
-        //console.log(target.src);
         const class_name = '.' + target.className;
         const src_click_img = target.src;
         const img_arr = document.querySelectorAll(class_name);
-        //console.log(img_arr);
         const src_arr = [];
         const name_arr = [];
 
@@ -857,19 +751,10 @@ export function show_image(event) {
             name_arr.push(lang_name);
         }
 
-        //console.log(src_arr);
-
-        /* background: rgba(0, 170, 238, 0.9); */
         const shadow = document.createElement('div');
         shadow.className = 'shadow';
         shadow.id = 'shadow';
-        /*shadow.onclick = function () {
-            console.log('delete');
-            const delete_shadow = document.getElementById('shadow');
-            delete_shadow.remove();
-            const body = document.body;
-            body.style.overflow = 'visible';
-        }*/
+
         body.append(shadow);
         body.style.overflow = 'hidden';
 
@@ -878,7 +763,6 @@ export function show_image(event) {
         cross.src = path_img + 'cross.png';
         cross.alt = 'close';
         cross.onclick = function () {
-            console.log('cross');
             const delete_shadow = document.getElementById('shadow');
             delete_shadow.remove();
             const body = document.body;
@@ -894,9 +778,8 @@ export function show_image(event) {
 }
 
 export function show_product_info(obj) {
-    //console.log(obj);
-
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
+
     const main = document.getElementById('main');
     main.innerHTML = '';
 
@@ -943,7 +826,6 @@ export function show_product_info(obj) {
     const images_array_product_body = obj.body_color;
 
     images_array_product_body.forEach(function (item) {
-        console.log(item);
         const small_image_product_div = document.createElement('div');
         small_image_product_div.className = 'small_image_product_div';
 
@@ -963,7 +845,7 @@ export function show_product_info(obj) {
 
     images_array_product_facade.forEach(function (item) {
         if (!(images_array_product_body.includes(item))) {
-            console.log(item);
+
             const small_image_product_div = document.createElement('div');
             small_image_product_div.className = 'small_image_product_div';
 
@@ -979,21 +861,6 @@ export function show_product_info(obj) {
             info_images_div.append(small_image_product_div);
         }
     });
-
-    /*if (obj.body_color[EN_LANG] !== obj.facade_color[EN_LANG]) {
-        const small_image_product_facade_div = document.createElement('div');
-        small_image_product_facade_div.className = 'small_image_product_div';
-
-        const small_image_product_facade = document.createElement('img');
-        small_image_product_facade.className = 'small_image_product';
-        small_image_product_facade.src = path_img_color + obj.facade_color.img;
-        small_image_product_facade.alt = obj.facade_color[EN_LANG];
-
-        // функция клика чтобы картинки были большие
-
-        small_image_product_facade_div.append(small_image_product_facade);
-        info_images_div.append(small_image_product_facade_div);
-    } */
 
     short_info.append(info_images_div);
 
@@ -1026,8 +893,6 @@ export function show_product_info(obj) {
             short_info_colors.append(short_info_colors_delimiter);
         }
 
-        //console.log(item);
-
         const short_info_color_body = document.createElement('p');
         short_info_color_body.innerHTML = item[lang];
         short_info_color_body.dataset.en = item[EN_LANG];
@@ -1051,24 +916,6 @@ export function show_product_info(obj) {
         }
     });
 
-    /*const short_info_color_body = document.createElement('p');
-    short_info_color_body.innerHTML = obj.body_color[lang];
-    short_info_color_body.dataset.en = obj.body_color[EN_LANG];
-    short_info_color_body.dataset.pl = obj.body_color[PL_LANG];
-    short_info_color_body.dataset.ru = obj.body_color[RU_LANG];
-    short_info_colors.append(short_info_color_body);
-
-    const short_info_colors_delimiter = document.createElement('p');
-    short_info_colors_delimiter.innerHTML = ' \\ ';
-    short_info_colors.append(short_info_colors_delimiter);
-
-    const short_info_color_facade = document.createElement('p');
-    short_info_color_facade.innerHTML = obj.facade_color[lang];
-    short_info_color_facade.dataset.en = obj.facade_color[EN_LANG];
-    short_info_color_facade.dataset.pl = obj.facade_color[PL_LANG];
-    short_info_color_facade.dataset.ru = obj.facade_color[RU_LANG];
-    short_info_colors.append(short_info_color_facade);*/
-
     short_info_text.append(short_info_colors);
 
     const short_info_first_cost_div = document.createElement('div');
@@ -1087,8 +934,6 @@ export function show_product_info(obj) {
 
     const discount_str = obj.discount.trim();
     const sale_str = obj.sale.trim();
-
-    console.log(discount_str, sale_str);
 
     if ((discount_str.length !== 0) || (sale_str.length !== 0)) {
         const short_info_first_cost_old = document.createElement('span');
@@ -1435,7 +1280,6 @@ export function add_favorites(array) {
 
     const favorites_dressers = localStorage.getItem('favorites_dressers');
 
-    //console.log(array);
     const save_info_arr = [];
 
     const category_names = array[0];
@@ -1458,11 +1302,6 @@ export function add_favorites(array) {
 
     localStorage.setItem('favorites_dressers', save);
 
-    /*const favorites_dressers2 = localStorage.getItem('favorites_dressers');
-    const info = favorites_dressers2.split(',');
-
-    console.log(info);*/
-
     const button_add_favorites = document.getElementById('button_add_favorites');
     button_add_favorites.className = 'button_add_favorites button_add_favorites_active';
     button_add_favorites.innerHTML = WEBSITE_INFO.remove_favorites[lang];
@@ -1484,7 +1323,6 @@ export function delete_favorites(array) {
     let delete_index = undefined;
 
     if ((favorites_dressers === null) || (favorites_dressers === null) || (favorites_dressers.length == 0)) {
-        //console.log(is_found);
         return is_found;
     }
 
@@ -1497,8 +1335,6 @@ export function delete_favorites(array) {
         info_structure.push(obj);
         info_structure.push(info_arr[i + 3]);
     }
-
-    //console.log(info_structure);
 
     for (let i = 0; i < info_structure.length; i = i + 2) {
         let is_first_equal = false;
@@ -1538,7 +1374,6 @@ export function delete_favorites(array) {
     const new_save_info_str = new_save_info_arr.join();
     localStorage.setItem('favorites_dressers', new_save_info_str);
 
-
     const button_add_favorites = document.getElementById('button_add_favorites');
     button_add_favorites.className = 'button_add_favorites';
     button_add_favorites.innerHTML = WEBSITE_INFO.add_favorites[lang];
@@ -1557,7 +1392,6 @@ export function check_favorites(array) {
     const favorites_dressers = localStorage.getItem('favorites_dressers');
 
     if ((favorites_dressers === null) || (favorites_dressers === null) || (favorites_dressers.length == 0)) {
-        //console.log(is_found);
         return is_found;
     }
 
@@ -1573,8 +1407,6 @@ export function check_favorites(array) {
         info_structure.push(obj);
         info_structure.push(info_arr[i + 3]);
     }
-
-    //console.log(info_structure);
 
     for (let i = 0; i < info_structure.length; i = i + 2) {
         let is_first_equal = false;
@@ -1600,28 +1432,18 @@ export function check_favorites(array) {
         }
     }
 
-    //console.log(is_found);
-
     return is_found;
 }
 
 export function show_category(name_obj) {
-    console.log(name_obj);
-
     const main = document.getElementById('main');
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
-    highlight_menu_item('no_light');
-
     const catalog = [];
-
-    show_link_category_page(name_obj);
 
     for (const key in DRESSERS) {
         const category = DRESSERS[key];
         for (const products in category) {
-            //console.log(category[0]);
-            //const product_info = category[products];
             if (category[0][EN_LANG] == name_obj[EN_LANG]) {
                 if (products != 0) {
                     catalog.push(product_card_create(category[products]));
@@ -1631,13 +1453,11 @@ export function show_category(name_obj) {
     }
 
     if (catalog.length) {
-        //console.log('catalog.length');
         main.innerHTML = '';
         catalog.forEach(function (item) {
             main.append(item);
         });
     } else {
-        //console.log('no');
         main.innerHTML = '';
 
         const no_results_div = document.createElement('div');
@@ -1675,15 +1495,14 @@ export function show_category(name_obj) {
 
         main.append(no_results_div);
     }
+
+    highlight_menu_item('no_light');
+    show_link_category_page(name_obj);
 }
 
 export function show_tags(name_tag) {
-    //console.log(name_tag);
-
     const main = document.getElementById('main');
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
-
-    highlight_menu_item('no_light');
 
     const catalog = [];
 
@@ -1692,15 +1511,12 @@ export function show_tags(name_tag) {
         for (const products in category) {
             const product_info = category[products];
             if (products != 0) {
-                console.log(product_info.tags);
-
                 const tags_arr = product_info.tags;
 
                 if (tags_arr.length) {
                     for (let tags_index = 0; tags_index < tags_arr.length; tags_index++) {
-                        console.log(tags_arr[tags_index][EN_LANG]);
+
                         if (tags_arr[tags_index][EN_LANG] == name_tag[EN_LANG]) {
-                            console.log('yes');
                             catalog.push(product_card_create(product_info));
                             continue;
                         }
@@ -1710,16 +1526,12 @@ export function show_tags(name_tag) {
         }
     }
 
-    console.log(catalog);
-
     if (catalog.length) {
-        //console.log('catalog.length');
         main.innerHTML = '';
         catalog.forEach(function (item) {
             main.append(item);
         });
     } else {
-        //console.log('no');
         main.innerHTML = '';
 
         const no_results_div = document.createElement('div');
@@ -1757,6 +1569,8 @@ export function show_tags(name_tag) {
 
         main.append(no_results_div);
     }
+
+    highlight_menu_item('no_light');
 }
 
 export function show_link_main_page() {
@@ -1788,7 +1602,7 @@ export function show_link_catalog_page() {
 
     const pages_links = document.getElementById('pages_links');
     const pages_links_arr = document.querySelectorAll('.pages_link');
-    //console.log(pages_links_arr);
+
     let is_link = false;
     for (let index_links = 0; index_links < pages_links_arr.length; index_links++) {
         if (pages_links_arr[index_links].dataset.en == WEBSITE_INFO.menu_catalog[EN_LANG]) {
@@ -1796,11 +1610,8 @@ export function show_link_catalog_page() {
         }
     }
 
-    //console.log(is_link);
-
     if (!is_link) {
         const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
-        //pages_links.innerHTML = '';
 
         const arrow_link = document.createElement('a');
         arrow_link.className = 'arrow_link';
@@ -1825,7 +1636,7 @@ export function show_link_all_products_page() {
 
     const pages_links = document.getElementById('pages_links');
     const pages_links_arr = document.querySelectorAll('.pages_link');
-    //console.log(pages_links_arr);
+
     let is_link = false;
     for (let index_links = 0; index_links < pages_links_arr.length; index_links++) {
         if (pages_links_arr[index_links].dataset.en == WEBSITE_INFO.menu_all_goods[EN_LANG]) {
@@ -1833,11 +1644,8 @@ export function show_link_all_products_page() {
         }
     }
 
-    //console.log(is_link);
-
     if (!is_link) {
         const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
-        //pages_links.innerHTML = '';
 
         const arrow_link = document.createElement('a');
         arrow_link.className = 'arrow_link';
@@ -1862,7 +1670,7 @@ export function show_link_what_know_page() {
 
     const pages_links = document.getElementById('pages_links');
     const pages_links_arr = document.querySelectorAll('.pages_link');
-    //console.log(pages_links_arr);
+
     let is_link = false;
     for (let index_links = 0; index_links < pages_links_arr.length; index_links++) {
         if (pages_links_arr[index_links].dataset.en == WEBSITE_INFO.menu_what_need_know[EN_LANG]) {
@@ -1870,11 +1678,8 @@ export function show_link_what_know_page() {
         }
     }
 
-    //console.log(is_link);
-
     if (!is_link) {
         const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
-        //pages_links.innerHTML = '';
 
         const arrow_link = document.createElement('a');
         arrow_link.className = 'arrow_link';
@@ -1899,7 +1704,7 @@ export function show_link_our_address_page() {
 
     const pages_links = document.getElementById('pages_links');
     const pages_links_arr = document.querySelectorAll('.pages_link');
-    //console.log(pages_links_arr);
+
     let is_link = false;
     for (let index_links = 0; index_links < pages_links_arr.length; index_links++) {
         if (pages_links_arr[index_links].dataset.en == WEBSITE_INFO.menu_our_address[EN_LANG]) {
@@ -1907,11 +1712,8 @@ export function show_link_our_address_page() {
         }
     }
 
-    //console.log(is_link);
-
     if (!is_link) {
         const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase();
-        //pages_links.innerHTML = '';
 
         const arrow_link = document.createElement('a');
         arrow_link.className = 'arrow_link';
@@ -1970,9 +1772,6 @@ export function show_link_category_page(name_obj) {
     pages_links.append(catalog_page_link);
     pages_links.append(arrow_link_2);
 
-    //name_obj[EN_LANG]
-    console.log(name_obj);
-
     const arrow_link_3 = document.createElement('a');
     arrow_link_3.className = 'arrow_link';
     arrow_link_3.innerHTML = ' > ';
@@ -1991,9 +1790,6 @@ export function show_link_category_page(name_obj) {
 }
 
 export function slider(src_arr, name_arr, src_click_img) {
-    /*src, name... */
-    //console.log(src_arr);
-    //console.log(name_arr);
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
     const shadow = document.getElementById('shadow');
@@ -2009,20 +1805,9 @@ export function slider(src_arr, name_arr, src_click_img) {
         if (src_arr[index_arr] == src_click_img) {
             start_slide = index_arr;
         }
-        /*const slider_item = document.createElement('div');
-        slider_item.className = 'slider_item';
-
-        const slider_img = document.createElement('img');
-        slider_img.className = 'slider_img';
-        slider_img.src = src_arr[index_arr];
-        slider_img.alt = src_arr[index_arr + 1];
-
-        slider_item.append(slider_img);
-        slider.append(slider_item);*/
     }
 
     let slide_index = start_slide;
-    //console.log(slide_index);
 
     const slider_prev = document.createElement('div');
     slider_prev.className = 'slider_prev';
@@ -2032,8 +1817,6 @@ export function slider(src_arr, name_arr, src_click_img) {
         if (slide_index < 0) {
             slide_index = src_arr.length - 1;
         }
-
-        //console.log(slide_index);
 
         show_slide(src_arr[slide_index], name_arr[slide_index]);
     }
@@ -2054,8 +1837,6 @@ export function slider(src_arr, name_arr, src_click_img) {
             slide_index = 0;
         }
 
-        //console.log(slide_index);
-
         show_slide(src_arr[slide_index], name_arr[slide_index]);
     }
 
@@ -2075,23 +1856,8 @@ export function slider(src_arr, name_arr, src_click_img) {
     slide_item.dataset.pl = name_arr[slide_index].pl;
     slide_item.dataset.ru = name_arr[slide_index].ru;
     slide_item.title = WEBSITE_INFO.open_in_new_window[lang];
-    /*slide_item.title.dataset.en = WEBSITE_INFO.open_in_new_window[EN_LANG];
-    slide_item.title.dataset.pl = WEBSITE_INFO.open_in_new_window[PL_LANG];
-    slide_item.title.dataset.ru = WEBSITE_INFO.open_in_new_window[RU_LANG];*/
     slide_item.onclick = function () {
-        //const shadow = document.getElementById('shadow');
         const image = document.getElementById('slide_item');
-
-        /*const full_img = document.createElement('img');
-        full_img.src = image.src;
-        full_img.alt = image.alt;
-        full_img.style.position = 'absolute';
-        full_img.style.height = '100%';
-        shadow.append(full_img);
-
-        shadow.style.overflow = 'visible';*/
-        //image.style.position = 'absolute';
-        //image.style.height = '100%';
         window.open(image.src);
     }
 
@@ -2108,8 +1874,6 @@ export function slider(src_arr, name_arr, src_click_img) {
     slider.append(slide_title);
 
     shadow.append(slider);
-
-    //show_slide(src_arr[slide_index], name_arr[slide_index]);
 }
 
 function show_slide(src_img, name_img) {
