@@ -23,7 +23,10 @@ export function product_card_create(obj) {
     //console.log('product_card_create ', obj);
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
-    const card_border = document.createElement('div');
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const card_border = document.createElement('a');
     card_border.className = 'card_border';
 
     const img_border = document.createElement('div');
@@ -94,7 +97,7 @@ export function product_card_create(obj) {
     card_cost.innerHTML = first_cost + ' ' + CURRENCY_UNIT + '  -  ' + second_cost + ' ' + CURRENCY_UNIT;
     card_border.append(card_cost);
 
-    const card_button = document.createElement('button');
+    const card_button = document.createElement('a');
     card_button.className = 'card_button';
     card_button.innerHTML = WEBSITE_INFO.select[lang];
     card_button.dataset.en = WEBSITE_INFO.select[EN_LANG];
@@ -105,14 +108,21 @@ export function product_card_create(obj) {
     }
     card_border.append(card_button);
 
-    return card_border;
+    card.append(card_border);
+
+    //return card_border;
+
+    return card;
 }
 
 export function catalog_card_create(array) {
     //console.log(array);
     const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
 
-    const catalog_card_border = document.createElement('div');
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const catalog_card_border = document.createElement('a');
     catalog_card_border.className = 'catalog_card_border';
 
     const catalog_img_border = document.createElement('div');
@@ -176,7 +186,7 @@ export function catalog_card_create(array) {
 
     catalog_card_border.append(catalog_card_second_info);
 
-    const catalog_card_button = document.createElement('button');
+    const catalog_card_button = document.createElement('a');
     catalog_card_button.className = 'catalog_card_button';
     catalog_card_button.innerHTML = WEBSITE_INFO.go_to_catalog[lang];
     catalog_card_button.dataset.en = WEBSITE_INFO.go_to_catalog[EN_LANG];
@@ -197,5 +207,9 @@ export function catalog_card_create(array) {
         // [4] - number количество
     });*/
 
-    return catalog_card_border;
+    card.append(catalog_card_border);
+
+    //return catalog_card_border;
+
+    return card;
 }

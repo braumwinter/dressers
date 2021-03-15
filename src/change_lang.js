@@ -10,10 +10,16 @@ export function choose_lang(event) {
     show_lang.innerHTML = data_lang;
     show_lang.dataset.lang = data_lang;
 
+    const show_drop_lang = document.getElementById('language_list');
+    show_drop_lang.classList.remove('is_show_language');
+
+
     change_lang(data_lang);
 }
 
 export function change_lang(lang) {
+    document.title = WEBSITE_INFO.logo[lang];
+
     const to_receive_orders = document.getElementById('to_receive_orders');
     to_receive_orders.innerHTML = WEBSITE_INFO.to_receive_orders[lang];
 
@@ -45,7 +51,7 @@ export function change_lang(lang) {
     menu_tags.innerHTML = WEBSITE_INFO.menu_tags[lang];
 
     const search_input = document.getElementById('search_input');
-    search_input.placeholder  = WEBSITE_INFO.search_here[lang];
+    search_input.placeholder = WEBSITE_INFO.search_here[lang];
 
     const for_questions_call = document.getElementById('for_questions_call');
     for_questions_call.innerHTML = WEBSITE_INFO.for_questions_call[lang];

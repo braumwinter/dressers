@@ -27,9 +27,9 @@
                 </div>
 
                 <div class="header_language">
-                    <div class="show_language">
+                    <div class="show_language" id="div_show_language">
                         <span class="show_language_text" id="show_language" data-lang='en'>EN</span>
-                        <ul class="language_list">
+                        <ul class="language_list" id="language_list">
                             <li class="language_item" id="language_item_en" data-lang='en'>EN</li>
                             <li class="language_item" id="language_item_pl" data-lang='pl'>PL</li>
                             <li class="language_item" id="language_item_ru" data-lang='ru'>RU</li>
@@ -42,7 +42,6 @@
     </header>
 
     <div class="container gray">
-
         <div class="logo_favorites">
             <div class="logo_div">
                 <h1 class="logo" id="logo"></h1>
@@ -53,39 +52,44 @@
                 <img class="favorites_img" src="./assets/img/favorites.png" alt="favorites">
                 <p class="favorites_text" id="favorites_text"></p>
             </div>
-
         </div> <!-- /logo_favorites -->
     </div> <!-- /container -->
 
     <div class="menu">
         <div class="container">
             <ul class="menu_list" id="menu_list">
-                <li class="menu_item" id="menu_main"></li>
+                <li class="menu_item">
+                    <span class="menu_item_underline" id="menu_main"></span>
+                </li>
 
-                <li class="menu_item" id="menu_all_goods"></li>
+                <li class="menu_item">
+                    <span class="menu_item_underline" id="menu_all_goods"></span>
+                </li>
 
-                <li class="menu_item" id="menu_what_need_know"></li>
+                <li class="menu_item">
+                    <span class="menu_item_underline" id="menu_what_need_know"></span>
+                </li>
 
-                <li class="menu_item" id="menu_our_address"></li>
+                <li class="menu_item">
+                    <span class="menu_item_underline" id="menu_our_address"></span>
+                </li>
 
                 <li class="menu_item show_dropdown_menu">
-                    <span id="menu_catalog"></span>
+                    <span class="menu_item_underline" id="menu_catalog"></span>
                     <ul class="dropdown_menu_list" id="dropdown_catalog"></ul>
                     <img class="show_dropdown_menu_img" src="./assets/img/list_arrow.png" alt="arrow">
                 </li>
 
                 <li class="menu_item show_dropdown_menu">
-                    <span id="menu_tags"></span>
+                    <span class="menu_item_underline" id="menu_tags"></span>
                     <ul class="dropdown_menu_list" id="dropdown_tags"></ul>
                     <img class="show_dropdown_menu_img" src="./assets/img/list_arrow.png" alt="arrow">
                 </li>
             </ul>
 
             <div class="search_div">
-
                 <input class="search_input" id="search_input" type="text" placeholder="Искать здесь...">
                 <img class="search_button" id="search_button" src="./assets/img/search.png" alt="search">
-
             </div>
         </div> <!-- /container -->
     </div> <!-- /menu -->
@@ -105,7 +109,6 @@
                     <span class="header_info_text" id="footer_phone_number"></span>
                 </a>
             </div>
-
         </div> <!-- /container -->
     </footer>
 

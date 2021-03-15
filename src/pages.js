@@ -14,7 +14,14 @@ import {
     WARRANTY_RU,
     BODY_COLOR,
     CURRENCY_UNIT,
-    COST_REPLACING_BALL_GUIDES
+    COST_REPLACING_BALL_GUIDES,
+    NAME_COMPANY_RU,
+    NAME_COMPANY_PL,
+    NAME_COMPANY_EN,
+    OUR_ADDRESS_EN,
+    OUR_ADDRESS_PL,
+    OUR_ADDRESS_RU,
+    HEADER_PHONE
 } from './lang.js';
 
 import {
@@ -677,10 +684,77 @@ export function show_what_need_know() {
 }
 
 export function show_our_address() {
+    const lang = document.getElementById('show_language').dataset.lang.toLocaleLowerCase() || document.getElementById('show_language').innerHTML.toLocaleLowerCase();
     const main = document.getElementById('main');
     main.innerHTML = '';
-    main.innerHTML = 'our_address';
+    //main.innerHTML = 'our_address';
     //show_pages_links();
+
+    const our_address_div = document.createElement('div');
+    our_address_div.className = 'our_address_div';
+
+    const our_address_header = document.createElement('h3');
+    our_address_header.className = 'our_address_header';
+    our_address_header.innerHTML = WEBSITE_INFO.pickup_point[lang];
+    our_address_header.dataset.en = WEBSITE_INFO.pickup_point[EN_LANG];
+    our_address_header.dataset.pl = WEBSITE_INFO.pickup_point[PL_LANG];
+    our_address_header.dataset.ru = WEBSITE_INFO.pickup_point[RU_LANG];
+    our_address_div.append(our_address_header);
+
+    let our_address_name;
+
+    if (lang === PL_LANG) {
+        our_address_name = NAME_COMPANY_PL;
+    } else if (lang === RU_LANG) {
+        our_address_name = NAME_COMPANY_RU;
+    } else {
+        our_address_name = NAME_COMPANY_EN;
+    }
+
+    const our_address_name_comp = document.createElement('p');
+    our_address_name_comp.className = 'our_address_text';
+    our_address_name_comp.innerHTML = our_address_name;
+    our_address_name_comp.dataset.en = NAME_COMPANY_EN;
+    our_address_name_comp.dataset.pl = NAME_COMPANY_PL;
+    our_address_name_comp.dataset.ru = NAME_COMPANY_RU;
+    our_address_div.append(our_address_name_comp);
+
+    let our_address;
+
+    if (lang === PL_LANG) {
+        our_address = OUR_ADDRESS_PL;
+    } else if (lang === RU_LANG) {
+        our_address = OUR_ADDRESS_RU;
+    } else {
+        our_address = OUR_ADDRESS_EN;
+    }
+
+    const our_address_text = document.createElement('p');
+    our_address_text.className = 'our_address_text';
+    our_address_text.innerHTML = our_address;
+    our_address_text.dataset.en = OUR_ADDRESS_EN;
+    our_address_text.dataset.pl = OUR_ADDRESS_PL;
+    our_address_text.dataset.ru = OUR_ADDRESS_RU;
+    our_address_div.append(our_address_text);
+
+    const our_address_p = document.createElement('p');
+    our_address_p.className = 'our_address_text';
+
+    const our_address_span_tel = document.createElement('span');
+    our_address_span_tel.innerHTML = WEBSITE_INFO.phone_ordering_inquiries[lang];
+    our_address_span_tel.dataset.en = WEBSITE_INFO.phone_ordering_inquiries[EN_LANG];
+    our_address_span_tel.dataset.pl = WEBSITE_INFO.phone_ordering_inquiries[PL_LANG];
+    our_address_span_tel.dataset.ru = WEBSITE_INFO.phone_ordering_inquiries[RU_LANG];
+    our_address_p.append(our_address_span_tel);
+
+
+    const our_address_tel = document.createElement('a');
+    our_address_tel.href = 'tel:+' + HEADER_PHONE;
+    our_address_tel.innerHTML = HEADER_PHONE;
+
+    our_address_p.append(our_address_tel);
+    our_address_div.append(our_address_p);
+    main.append(our_address_div);
 
     show_link_main_page();
     show_link_our_address_page();

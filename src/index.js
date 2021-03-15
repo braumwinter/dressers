@@ -181,3 +181,21 @@ const go_top_button = document.getElementById('back_to_top');
 
 window.addEventListener('scroll', scroll_button);
 go_top_button.addEventListener('click', back_top);
+
+let is_show_dropdown_language = false;
+
+export function show_dropdown_language() {
+    const show_drop_lang = document.getElementById('language_list');
+
+    if (is_show_dropdown_language) {
+        show_drop_lang.classList.remove('is_show_language');
+    } else {
+        show_drop_lang.classList.add('is_show_language');
+    }
+
+    is_show_dropdown_language = !is_show_dropdown_language;
+}
+
+const div_show_language = document.getElementById('div_show_language');
+
+div_show_language.addEventListener('click', show_dropdown_language, false);
